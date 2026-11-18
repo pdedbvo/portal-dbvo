@@ -15,19 +15,23 @@ window.DADOS = {
     mural: false          // avisos, aniversariantes e agenda
   },
 
+  /* Foto de fundo do cabeçalho (opcional). Ex.: "assets/topo.jpg" ou um link.
+     Deixe "" para o fundo preto com grade. */
+  topoImagem: "",
+
   missao: "Ser o maior e mais rentável grupo de soluções imobiliárias de Maringá.",
   proposito: "Construir empreendimentos imobiliários perto de tudo, à frente do tempo.",
 
   /* ---------- EMPRESAS DO GRUPO (cards) ---------- */
   empresas: [
-    { nome: "Edifica",                   logo: "edifica",               pagina: "/SitePages/EDIFICA.aspx",              tag: "BPO",            texto: "Revisar descrição da Edifica." },
-    { nome: "Delta Bravo Engenharia",    logo: "deltabravo-engenharia", pagina: "/SitePages/DELTABRAVOENGENHARIA.aspx", tag: "Engenharia",     texto: "Revisar descrição da Delta Bravo Engenharia." },
-    { nome: "Delta Bravo Obras",         logo: "deltabravo-obra",       pagina: "/SitePages/DELTABRAVOOBRAS.aspx",      tag: "Obras",          texto: "Revisar descrição da Delta Bravo Obras." },
-    { nome: "DBVO Hub",                  logo: "dbvo-hub",              pagina: "/SitePages/DBVOHUB.aspx",              tag: "Serviços",       texto: "Revisar descrição do DBVO Hub." },
-    { nome: "BE A Moradia do Futuro",    logo: "be",                    pagina: "/SitePages/BEAMORADIADOFUTURO.aspx",   tag: "Incorporação",   texto: "Revisar descrição da BE." },
-    { nome: "DBVO",                      logo: "dbvo",                  pagina: "/SitePages/DBVO.aspx",                 tag: "Holding",        texto: "Revisar descrição da DBVO." },
-    { nome: "Engine",                    logo: "engine",                pagina: "/SitePages/ENGINE.aspx",               tag: "Engine",         texto: "Revisar descrição da Engine." },
-    { nome: "Inside",                    logo: "inside",                pagina: "/SitePages/INSIDE.aspx",               tag: "Inovação",       texto: "Revisar descrição do Inside." }
+    { nome: "Edifica",                   logo: "edifica",               pagina: "/SitePages/EDIFICA.aspx",              tag: "BPO",            texto: "" },
+    { nome: "Delta Bravo Engenharia",    logo: "deltabravo-engenharia", pagina: "/SitePages/DELTABRAVOENGENHARIA.aspx", tag: "Engenharia",     texto: "" },
+    { nome: "Delta Bravo Obras",         logo: "deltabravo-obra",       pagina: "/SitePages/DELTABRAVOOBRAS.aspx",      tag: "Obras",          texto: "" },
+    { nome: "DBVO Hub",                  logo: "dbvo-hub",              pagina: "/SitePages/DBVOHUB.aspx",              tag: "Serviços",       texto: "" },
+    { nome: "BE A Moradia do Futuro",    logo: "be",                    pagina: "/SitePages/BEAMORADIADOFUTURO.aspx",   tag: "Incorporação",   texto: "" },
+    { nome: "DBVO",                      logo: "dbvo",                  pagina: "/SitePages/DBVO.aspx",                 tag: "Holding",        texto: "" },
+    { nome: "Engine",                    logo: "engine",                pagina: "/SitePages/ENGINE.aspx",               tag: "Engine",         texto: "" },
+    { nome: "Inside",                    logo: "inside",                pagina: "/SitePages/INSIDE.aspx",               tag: "Inovação",       texto: "" }
   ],
 
   /* ---------- CENTRAL DE FERRAMENTAS ---------- */
