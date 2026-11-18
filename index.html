@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal DBVO</title>
+<link rel="icon" href="data:,">
+<style>
+@font-face{font-family:N27;src:url(assets/fonts/N27-Regular.otf) format("opentype");font-weight:400;font-display:swap}
+@font-face{font-family:N27;src:url(assets/fonts/N27-Bold.otf) format("opentype");font-weight:700;font-display:swap}
+:root{
+  --preto:#111111; --cinza:#646464; --claro:#C8C8C8; --branco:#FFFFFF;
+  --sup:rgba(200,200,200,.22);  /* #C8C8C8 translúcido p/ blocos */
+  --linha:rgba(200,200,200,.7);
+  --raio:14px; --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--branco);color:var(--preto);font-family:N27,Poppins,Montserrat,"Century Gothic",sans-serif;font-weight:400;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.wrap{max-width:1280px;margin:0 auto;padding:0 32px}
+section{padding:56px 0}
+.embed section{padding:24px 0}
+.embed .wrap{padding:0 8px}
+
+/* títulos */
+.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--cinza);display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--preto)}
+.h2{font-weight:700;text-transform:uppercase;font-size:clamp(22px,2.6vw,32px);letter-spacing:.02em;line-height:1.1}
+.cab{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:28px;flex-wrap:wrap}
+.sub{color:var(--cinza);font-size:15px;max-width:520px;line-height:1.5}
+
+/* revelar ao rolar */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.on{opacity:1;transform:none}
+
+/* logos recoloríveis */
+.logo{display:block;background:var(--preto);-webkit-mask:var(--src) center/contain no-repeat;mask:var(--src) center/contain no-repeat;transition:background .35s var(--ease)}
+
+/* =============== TOPO =============== */
+#topo{background:var(--preto);color:var(--branco);padding:0;position:relative;z-index:5}
+.grade{overflow:hidden}
+.embed #topo{min-height:420px}
+#topo .wrap{position:relative;z-index:2;padding-top:56px;padding-bottom:56px;display:grid;grid-template-columns:1.25fr 1fr;gap:48px;align-items:center}
+.embed #topo .wrap{padding-top:40px;padding-bottom:40px}
+.grade{position:absolute;inset:0;z-index:1;background-image:linear-gradient(rgba(200,200,200,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(200,200,200,.07) 1px,transparent 1px);background-size:56px 56px;mask:radial-gradient(ellipse at 80% 40%,#000 0%,transparent 70%);-webkit-mask:radial-gradient(ellipse at 80% 40%,#000 0%,transparent 70%)}
+.saud{font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--claro);margin-bottom:18px}
+.saud b{color:var(--branco)}
+.frase{min-height:2.3em;font-weight:700;text-transform:uppercase;font-size:clamp(26px,3.4vw,46px);line-height:1.08;letter-spacing:.01em}
+.frase span{display:block;transition:opacity .5s,transform .5s var(--ease)}
+.frase span.sai{opacity:0;transform:translateY(-10px)}
+.rot{display:flex;gap:8px;margin-top:22px}
+.rot button{font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:8px 14px;border:1px solid rgba(200,200,200,.35);border-radius:99px;color:var(--claro);transition:.25s}
+.rot button.at,.rot button:hover{background:var(--branco);color:var(--preto);border-color:var(--branco)}
+.busca{position:relative}
+.busca label{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--claro);margin-bottom:10px}
+.busca input{width:100%;font:inherit;font-size:17px;padding:18px 20px 18px 52px;border-radius:var(--raio);border:1px solid rgba(200,200,200,.3);background:rgba(255,255,255,.06);color:var(--branco);outline:none;transition:.25s}
+.busca input::placeholder{color:var(--cinza)}
+.busca input:focus{border-color:var(--branco);background:rgba(255,255,255,.1)}
+.busca svg{position:absolute;left:18px;top:47px;width:20px;height:20px;stroke:var(--claro)}
+.res{position:absolute;left:0;right:0;top:calc(100% + 8px);background:var(--branco);color:var(--preto);border-radius:var(--raio);box-shadow:0 20px 50px rgba(0,0,0,.35);overflow:hidden;display:none;max-height:320px;overflow-y:auto;z-index:10}
+.res.on{display:block}
+.res a,.res p{display:flex;justify-content:space-between;gap:12px;padding:14px 18px;border-bottom:1px solid var(--sup);font-size:15px}
+.res a:hover,.res a.sel{background:var(--sup)}
+.res small{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--cinza);white-space:nowrap}
+.atalhos{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.atalhos a{font-size:13px;padding:8px 12px;border-radius:8px;background:rgba(255,255,255,.07);color:var(--claro);transition:.2s}
+.atalhos a:hover{background:var(--branco);color:var(--preto)}
+
+/* =============== EMPRESAS =============== */
+.emp{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{position:relative;aspect-ratio:1.35/1;border-radius:var(--raio);background:var(--sup);border:1px solid transparent;overflow:hidden;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:28px;transition:background .4s var(--ease),transform .4s var(--ease),box-shadow .4s var(--ease)}
+.card .logo{width:78%;height:46%;transition:transform .45s var(--ease),background .35s}
+.card .tag{position:absolute;top:16px;left:18px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--cinza);transition:color .35s}
+.card .info{position:absolute;left:18px;right:18px;bottom:16px;display:flex;justify-content:space-between;align-items:flex-end;gap:10px;opacity:0;transform:translateY(10px);transition:.4s var(--ease)}
+.card .info p{font-size:13px;line-height:1.4;color:var(--claro)}
+.card .seta{flex:none;width:36px;height:36px;border-radius:50%;background:var(--branco);display:grid;place-items:center}
+.card .seta svg{width:16px;height:16px;stroke:var(--preto)}
+.card:hover,.card:focus-visible{background:var(--preto);transform:translateY(-4px);box-shadow:0 18px 40px rgba(17,17,17,.25);outline:none}
+.card:hover .logo,.card:focus-visible .logo{background:var(--branco);transform:translateY(-16px) scale(.9)}
+.card:hover .tag{color:var(--claro)}
+.card:hover .info,.card:focus-visible .info{opacity:1;transform:none}
+
+/* =============== FERRAMENTAS =============== */
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:9px 14px;border-radius:99px;border:1px solid var(--claro);color:var(--cinza);transition:.2s}
+.chip.at,.chip:hover{background:var(--preto);border-color:var(--preto);color:var(--branco)}
+.fer{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.fcard{display:flex;flex-direction:column;gap:8px;padding:22px;border-radius:var(--raio);border:1px solid var(--linha);transition:.3s var(--ease);min-height:150px}
+.fcard:hover{border-color:var(--preto);transform:translateY(-3px);box-shadow:0 12px 30px rgba(17,17,17,.1)}
+.fcard .top{display:flex;justify-content:space-between;align-items:center}
+.fcard .area{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cinza)}
+.fcard h3{font-size:18px;font-weight:700;text-transform:uppercase;letter-spacing:.02em}
+.fcard p{font-size:14px;color:var(--cinza);line-height:1.45;flex:1}
+.fcard .ir{font-size:13px;font-weight:700;display:flex;align-items:center;gap:6px}
+.fcard .ir svg{width:14px;height:14px;stroke:currentColor;transition:transform .25s}
+.fcard:hover .ir svg{transform:translateX(4px)}
+.cad{width:16px;height:16px;stroke:var(--cinza)}
+
+/* =============== MURAL =============== */
+.mural{display:grid;grid-template-columns:1.5fr 1fr;gap:24px;align-items:start}
+.bloco{border-radius:var(--raio);background:var(--sup);padding:24px}
+.bloco h3{font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.bloco h3 small{font-weight:400;color:var(--cinza);letter-spacing:.1em}
+.aviso{background:var(--branco);border-radius:10px;margin-bottom:10px;overflow:hidden;transition:box-shadow .25s}
+.aviso:hover{box-shadow:0 8px 24px rgba(17,17,17,.08)}
+.aviso button{width:100%;text-align:left;display:grid;grid-template-columns:64px 1fr 20px;gap:16px;align-items:center;padding:16px 18px}
+.dt{text-align:center;line-height:1}
+.dt b{display:block;font-size:26px}
+.dt small{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--cinza)}
+.aviso .tt{font-size:16px;font-weight:700;line-height:1.3}
+.aviso .ct{display:flex;gap:8px;align-items:center;margin-bottom:4px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--cinza)}
+.novo{background:var(--preto);color:var(--branco);padding:3px 7px;border-radius:5px;font-size:10px}
+.aviso .mais{width:18px;height:18px;stroke:var(--cinza);transition:transform .3s}
+.aviso.ab .mais{transform:rotate(45deg)}
+.corpo{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+.corpo div{padding:0 18px 18px 98px;font-size:14px;line-height:1.55;color:var(--cinza)}
+.corpo a{display:inline-block;margin-top:8px;color:var(--preto);font-weight:700;border-bottom:2px solid var(--preto)}
+.lado{display:flex;flex-direction:column;gap:24px}
+.niver{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--linha)}
+.niver:last-child{border:0}
+.av{flex:none;width:44px;height:44px;border-radius:50%;background:var(--branco);display:grid;place-items:center;font-weight:700;font-size:15px}
+.niver.hoje .av{background:var(--preto);color:var(--branco)}
+.niver .nm{flex:1;font-size:15px;line-height:1.3}
+.niver .nm small{display:block;font-size:12px;color:var(--cinza)}
+.niver .dia{font-size:13px;font-weight:700;text-align:right}
+.niver .dia small{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--cinza);font-weight:400}
+.parab{font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:7px 10px;border-radius:6px;background:var(--preto);color:var(--branco);margin-top:4px;display:inline-block}
+.vazio{font-size:14px;color:var(--cinza);padding:8px 0}
+.ev{display:grid;grid-template-columns:56px 1fr auto;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid var(--linha)}
+.ev:last-child{border:0}
+.ev .dt{background:var(--branco);border-radius:10px;padding:8px 0}
+.ev .dt b{font-size:20px}
+.ev .tt{font-size:15px;font-weight:700;line-height:1.3}
+.ev .tt small{display:block;font-weight:400;font-size:12px;color:var(--cinza);margin-top:2px}
+.ics{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--claro);transition:.2s}
+.ics:hover{background:var(--preto);border-color:var(--preto)}
+.ics:hover svg{stroke:var(--branco)}
+.ics svg{width:15px;height:15px;stroke:var(--preto)}
+
+/* =============== VÍDEO =============== */
+.vbox{display:grid;grid-template-columns:1.7fr 1fr;gap:32px;align-items:center}
+.vbox .sub{font-size:16px}
+.vbtn{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:12px 16px;border-radius:10px;background:var(--preto);color:var(--branco)}
+.vbtn svg{width:14px;height:14px;stroke:var(--branco)}
+.video{position:relative;border-radius:var(--raio);overflow:hidden;aspect-ratio:16/9;background:var(--preto);cursor:pointer}
+.video img{width:100%;height:100%;object-fit:cover;opacity:.75;transition:opacity .4s,transform .8s var(--ease)}
+.video:hover img{opacity:.6;transform:scale(1.03)}
+.play{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;color:var(--branco)}
+.play i{width:84px;height:84px;border-radius:50%;background:var(--branco);display:grid;place-items:center;transition:transform .3s var(--ease)}
+.video:hover .play i{transform:scale(1.08)}
+.play i svg{width:28px;height:28px;fill:var(--preto);margin-left:4px}
+.play b{font-size:14px;letter-spacing:.18em;text-transform:uppercase}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* =============== REDES =============== */
+.redes{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.rede{border-radius:var(--raio);border:1px solid var(--linha);padding:22px;display:flex;flex-direction:column;gap:16px}
+.rede .logo{height:34px;width:100%;-webkit-mask-position:left center;mask-position:left center}
+.rede .nmm{font-size:16px;font-weight:700;text-transform:uppercase;height:34px;display:flex;align-items:center}
+.rede ul{list-style:none;display:flex;flex-direction:column}
+.rede li a{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:1px solid var(--sup);font-size:14px;transition:padding .25s}
+.rede li a svg{width:14px;height:14px;stroke:var(--cinza);transition:.25s}
+.rede li a:hover{padding-left:6px}
+.rede li a:hover svg{stroke:var(--preto);transform:translate(2px,-2px)}
+
+
+/* =============== EM CONSTRUÇÃO =============== */
+#obras{background:var(--preto);color:var(--branco)}
+#obras .eyebrow{color:var(--claro)}#obras .eyebrow::before{background:var(--branco)}
+.car{display:grid;grid-template-columns:1fr 1.7fr;gap:40px;align-items:center}
+.car-txt .h2{font-size:clamp(28px,3.6vw,48px);margin:6px 0 10px;min-height:1.1em}
+.car-txt .mes{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--claro)}
+.car-txt .nota{margin-top:18px;font-size:14px;line-height:1.5;color:var(--claro);max-width:340px}
+.car-nav{display:flex;align-items:center;gap:14px;margin-top:28px}
+.car-nav button{width:46px;height:46px;border-radius:50%;border:1px solid rgba(200,200,200,.35);display:grid;place-items:center;transition:.25s}
+.car-nav button:hover{background:var(--branco);border-color:var(--branco)}
+.car-nav button:hover svg{stroke:var(--preto)}
+.car-nav svg{width:18px;height:18px;stroke:var(--branco)}
+.car-nav .cont{font-size:13px;letter-spacing:.16em;color:var(--claro);min-width:64px;text-align:center}
+.car-bar{height:2px;background:rgba(200,200,200,.2);margin-top:22px;max-width:340px;overflow:hidden}
+.car-bar i{display:block;height:100%;width:0;background:var(--branco)}
+.car-bar i.run{animation:barra 6s linear forwards}
+@keyframes barra{to{width:100%}}
+.palco{position:relative;aspect-ratio:16/10;border-radius:var(--raio);overflow:hidden;background:#1c1c1c}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity .9s var(--ease)}
+.slide.at{opacity:1}
+.slide .fundo{position:absolute;inset:-30px;background-size:cover;background-position:center;filter:blur(28px) brightness(.55);transform:scale(1.1)}
+.slide img{position:relative;width:100%;height:100%;object-fit:contain;transform:scale(1.04);transition:transform 6.5s linear}
+.slide.at img{transform:scale(1)}
+.slide.deitada img{object-fit:cover}
+.selo{position:absolute;left:16px;bottom:16px;z-index:2;background:rgba(17,17,17,.75);backdrop-filter:blur(6px);color:var(--branco);font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:8px 12px;border-radius:8px;display:flex;align-items:center;gap:8px}
+.selo::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--branco);animation:pulsa 1.6s infinite}
+@keyframes pulsa{50%{opacity:.25}}
+
+/* =============== NÚMEROS =============== */
+.nums{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--linha)}
+.num{padding:30px 24px 30px 0;border-bottom:1px solid var(--linha)}
+.num:not(:nth-child(3n+1)){padding-left:24px;border-left:1px solid var(--linha)}
+.num b{display:block;font-weight:700;font-size:clamp(40px,5vw,68px);line-height:1;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.num span{display:block;margin-top:12px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--cinza)}
+
+/* =============== CULTURA =============== */
+.vals{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.val{border-radius:var(--raio);background:var(--sup);padding:26px 20px;display:flex;flex-direction:column;gap:22px;min-height:190px;transition:background .35s var(--ease),color .35s,transform .35s var(--ease)}
+.val svg{width:40px;height:40px;stroke:var(--preto);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:stroke .35s,transform .45s var(--ease)}
+.val .n{font-size:11px;letter-spacing:.16em;color:var(--cinza);transition:color .35s}
+.val h3{margin-top:auto;font-size:17px;font-weight:700;text-transform:uppercase;line-height:1.2;letter-spacing:.02em}
+.val:hover{background:var(--preto);color:var(--branco);transform:translateY(-4px)}
+.val:hover svg{stroke:var(--branco);transform:scale(1.12) rotate(-4deg)}
+.val:hover .n{color:var(--claro)}
+.mom{margin-top:40px}
+.mom-cab{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.mom-cab h3{font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.mom-cab small{font-size:12px;color:var(--cinza)}
+.fita{overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.trilho{display:flex;gap:12px;width:max-content;animation:rola 50s linear infinite}
+.fita:hover .trilho{animation-play-state:paused}
+@keyframes rola{to{transform:translateX(-50%)}}
+.foto{position:relative;width:260px;height:180px;border-radius:12px;overflow:hidden;background:var(--sup);flex:none;cursor:zoom-in}
+.foto img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.foto:hover img{transform:scale(1.06)}
+.foto figcaption{position:absolute;left:0;right:0;bottom:0;padding:24px 12px 10px;font-size:12px;color:var(--branco);background:linear-gradient(transparent,rgba(17,17,17,.75))}
+.foto.vaga{cursor:default;display:grid;place-items:center;border:1px dashed var(--claro);background:transparent;color:var(--cinza);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.caixa{position:fixed;inset:0;z-index:50;background:rgba(17,17,17,.92);display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px;padding:24px;cursor:zoom-out}
+.caixa.on{display:flex}
+.caixa img{max-width:92vw;max-height:80vh;border-radius:10px}
+.caixa p{color:var(--branco);font-size:14px;letter-spacing:.06em}
+
+footer{padding:28px 0;border-top:1px solid var(--linha);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--cinza)}
+.embed footer{display:none}
+
+@media (max-width:1000px){
+  #topo .wrap,.mural,.vbox,.car{grid-template-columns:1fr}
+  .vals{grid-template-columns:repeat(3,1fr)}
+  .emp,.redes{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:560px){
+  .wrap{padding:0 16px}
+  .emp,.redes{grid-template-columns:1fr}
+  .nums{grid-template-columns:1fr 1fr}.num,.num:not(:nth-child(3n+1)){padding:22px 12px;border-left:0}
+  .vals{grid-template-columns:1fr 1fr}
+  .card .info{opacity:1;transform:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- ===================== TOPO ===================== -->
+<section id="topo" data-secao="topo">
+  <div class="grade"></div>
+  <div class="wrap">
+    <div>
+      <p class="saud" id="saud"></p>
+      <h1 class="frase" id="frase"><span></span></h1>
+      <div class="rot" id="rot">
+        <button class="at" data-i="0">Missão</button>
+        <button data-i="1">Propósito</button>
+      </div>
+    </div>
+    <div class="busca">
+      <label for="q">O que você procura?</label>
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" autocomplete="off" placeholder="Empresa, ferramenta, aviso...">
+      <div class="res" id="res"></div>
+      <div class="atalhos" id="atalhos"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EMPRESAS ===================== -->
+<section id="empresas" data-secao="empresas">
+  <div class="wrap">
+    <div class="cab rv">
+      <div><p class="eyebrow">Grupo DBVO</p><h2 class="h2">Nossas empresas</h2></div>
+      <p class="sub">Passe o mouse sobre um card para ver mais e clique para abrir a página da empresa.</p>
+    </div>
+    <div class="emp" id="emp"></div>
+  </div>
+</section>
+
+<!-- ===================== EM CONSTRUÇÃO ===================== -->
+<section id="obras" data-secao="obras">
+  <div class="wrap car">
+    <div class="car-txt">
+      <p class="eyebrow">Em construção</p>
+      <h2 class="h2" id="car-nome"></h2>
+      <p class="mes" id="car-mes"></p>
+      <p class="nota">A foto mais recente de cada obra, atualizada todo mês direto do canteiro.</p>
+      <div class="car-nav" id="car-nav">
+        <button id="car-ant" aria-label="Obra anterior"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <span class="cont" id="car-cont"></span>
+        <button id="car-prox" aria-label="Próxima obra"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+      <div class="car-bar" id="car-bar"><i></i></div>
+    </div>
+    <div class="palco" id="palco"></div>
+  </div>
+</section>
+
+<!-- ===================== NÚMEROS ===================== -->
+<section id="numeros" data-secao="numeros">
+  <div class="wrap">
+    <div class="cab rv"><div><p class="eyebrow">Nossa trajetória</p><h2 class="h2">O grupo em números</h2></div></div>
+    <div class="nums" id="nums"></div>
+  </div>
+</section>
+
+<!-- ===================== CULTURA ===================== -->
+<section id="cultura" data-secao="cultura">
+  <div class="wrap">
+    <div class="cab rv">
+      <div><p class="eyebrow">Nossa cultura</p><h2 class="h2">Nossos valores</h2></div>
+      <p class="sub">O que guia cada decisão, cada obra e cada entrega do grupo.</p>
+    </div>
+    <div class="vals" id="vals"></div>
+    <div class="mom rv">
+      <div class="mom-cab"><h3>Momentos</h3><small>Clique para ampliar</small></div>
+      <div class="fita"><div class="trilho" id="trilho"></div></div>
+    </div>
+  </div>
+  <div class="caixa" id="caixa"><img alt=""><p></p></div>
+</section>
+
+<!-- ===================== FERRAMENTAS ===================== -->
+<section id="ferramentas" data-secao="ferramentas">
+  <div class="wrap">
+    <div class="cab rv">
+      <div><p class="eyebrow">Central de ferramentas</p><h2 class="h2">Apps dos times</h2></div>
+      <div class="chips" id="chips"></div>
+    </div>
+    <div class="fer" id="fer"></div>
+  </div>
+</section>
+
+<!-- ===================== MURAL ===================== -->
+<section id="mural" data-secao="mural">
+  <div class="wrap">
+    <div class="cab rv">
+      <div><p class="eyebrow">Fique por dentro</p><h2 class="h2">Mural</h2></div>
+    </div>
+    <div class="mural">
+      <div class="bloco rv"><h3>Avisos <small id="nav"></small></h3><div id="avisos"></div></div>
+      <div class="lado">
+        <div class="bloco rv"><h3>Aniversariantes <small id="mesn"></small></h3><div id="niver"></div></div>
+        <div class="bloco rv"><h3>Agenda <small>Próximos</small></h3><div id="agenda"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VÍDEO ===================== -->
+<section id="video" data-secao="video">
+  <div class="wrap">
+    <div class="cab rv"><div><p class="eyebrow">Vídeo</p><h2 class="h2" id="vtit"></h2></div></div>
+    <div class="vbox"><div class="video rv" id="vid"></div>
+      <div class="rv"><p class="sub">Assista, compartilhe com quem ainda não conhece e acompanhe os novos conteúdos no nosso canal.</p>
+      <a class="vbtn" href="https://www.youtube.com/%40amoradiadofuturo" target="_blank" rel="noopener">Ver canal no YouTube <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div></div>
+  </div>
+</section>
+
+<!-- ===================== REDES ===================== -->
+<section id="redes" data-secao="redes">
+  <div class="wrap">
+    <div class="cab rv">
+      <div><p class="eyebrow">Siga e compartilhe</p><h2 class="h2">Nossas redes</h2></div>
+      <p class="sub">Acompanhe as marcas do grupo e ajude a divulgar o que a gente faz.</p>
+    </div>
+    <div class="redes" id="redesg"></div>
+  </div>
+</section>
+
+<footer data-secao="rodape"><div class="wrap">DBVO · Página inicial</div></footer>
+
+<script src="dados.js"></script>
+<script>
+(function(){
+const D = window.DADOS, $ = s => document.querySelector(s);
+const MES = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+const MESL = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+const SETA = '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg>';
+const SETAD = '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+const CAD = '<svg class="cad" viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const hoje = new Date(); hoje.setHours(0,0,0,0);
+const dt = s => { const [a,m,d] = s.split("-").map(Number); return new Date(a, m-1, d); };
+const sp = p => /^https?:/.test(p) ? p : D.site + p;          // link SharePoint absoluto
+const ext = l => /^https?:/.test(l) && !l.includes("sharepoint.com");
+const alvo = l => ext(l) ? 'target="_blank" rel="noopener"' : 'target="_top"';
+const logo = (k, cls="") => `<i class="logo ${cls}" style="--src:url(assets/logos/${k}.png)" role="img"></i>`;
+
+/* ---- seções desligadas no dados.js ---- */
+const EX = D.exibir || {};
+["ferramentas","mural"].forEach(k => { if (EX[k] === false){ const el = document.querySelector(`[data-secao="${k}"]`); if (el) el.remove(); } });
+if (EX.ferramentas === false) D.ferramentas = [];
+if (EX.mural === false) D.avisos = [];
+if ($("#q")) $("#q").placeholder = ["Empresa", EX.ferramentas === false ? null : "ferramenta", EX.mural === false ? null : "aviso", "rede social"].filter(Boolean).join(", ") + "...";
+
+/* ---- modo seção: ?secao=empresas,redes ---- */
+const par = new URLSearchParams(location.search), sec = par.get("secao");
+if (sec){ document.body.classList.add("embed");
+  const quero = sec.split(",");
+  document.querySelectorAll("[data-secao]").forEach(e => { if(!quero.includes(e.dataset.secao)) e.remove(); });
+}
+
+/* ---- TOPO ---- */
+const h = new Date().getHours();
+const saud = h < 12 ? "Bom dia" : h < 18 ? "Boa tarde" : "Boa noite";
+const dataTxt = new Date().toLocaleDateString("pt-BR",{weekday:"long",day:"numeric",month:"long"});
+if ($("#saud")) $("#saud").innerHTML = `<b>${saud}</b> · ${dataTxt}`;
+const frases = [D.missao, D.proposito]; let fi = 0, tmr;
+function mostra(i){ const el = $("#frase span"); if(!el) return; fi = i; el.classList.add("sai");
+  setTimeout(()=>{ el.textContent = frases[i]; el.classList.remove("sai"); }, 260);
+  document.querySelectorAll("#rot button").forEach(b => b.classList.toggle("at", +b.dataset.i === i)); }
+if ($("#frase")){ $("#frase span").textContent = frases[0];
+  document.querySelectorAll("#rot button").forEach(b => b.onclick = () => { clearInterval(tmr); mostra(+b.dataset.i); });
+  tmr = setInterval(() => mostra((fi+1) % 2), 7000); }
+
+/* ---- busca geral ---- */
+const indice = [
+  ...D.empresas.map(e => ({t:e.nome, tipo:"Empresa", l:sp(e.pagina)})),
+  ...D.ferramentas.map(f => ({t:f.nome, tipo:"Ferramenta", l:f.link})),
+  ...D.avisos.map(a => ({t:a.titulo, tipo:"Aviso", l:a.link || "#mural", ancora:!a.link})),
+  ...D.redes.flatMap(r => r.links.map(x => ({t:`${r.marca} · ${x.rede}`, tipo:"Rede", l:x.link})))
+];
+const norm = s => s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+if ($("#q")){
+  const q = $("#q"), res = $("#res"); let sel = -1;
+  q.addEventListener("input", () => {
+    const t = norm(q.value.trim()); sel = -1;
+    if(!t){ res.classList.remove("on"); return; }
+    const r = indice.filter(i => norm(i.t).includes(t)).slice(0,8);
+    res.innerHTML = r.length ? r.map(i => `<a href="${esc(i.l)}" ${i.ancora ? "" : alvo(i.l)}>${esc(i.t)}<small>${i.tipo}</small></a>`).join("")
+                             : `<p>Nada encontrado para “${esc(q.value)}”</p>`;
+    res.classList.add("on");
+  });
+  q.addEventListener("keydown", e => {
+    const it = [...res.querySelectorAll("a")]; if(!it.length) return;
+    if(e.key==="ArrowDown"||e.key==="ArrowUp"){ e.preventDefault(); sel = (sel + (e.key==="ArrowDown"?1:-1) + it.length) % it.length;
+      it.forEach((a,i)=>a.classList.toggle("sel", i===sel)); }
+    if(e.key==="Enter"){ (it[sel] || it[0]).click(); }
+    if(e.key==="Escape"){ res.classList.remove("on"); }
+  });
+  document.addEventListener("click", e => { if(!e.target.closest(".busca")) res.classList.remove("on"); });
+  $("#atalhos").innerHTML = D.empresas.slice(0,5).map(e => `<a href="${sp(e.pagina)}" target="_top">${esc(e.nome)}</a>`).join("");
+}
+
+/* ---- EMPRESAS ---- */
+if ($("#emp")) $("#emp").innerHTML = D.empresas.map(e => `
+  <a class="card rv" href="${sp(e.pagina)}" target="_top" aria-label="${esc(e.nome)}">
+    <span class="tag">${esc(e.tag)}</span>${logo(e.logo)}
+    <span class="info"><p>${esc(e.texto)}</p><span class="seta">${SETA}</span></span>
+  </a>`).join("");
+
+/* ---- FERRAMENTAS ---- */
+if ($("#fer")){
+  const areas = ["Todas", ...new Set(D.ferramentas.map(f => f.area))];
+  const pinta = a => {
+    $("#fer").innerHTML = D.ferramentas.filter(f => a==="Todas" || f.area===a).map(f => `
+      <a class="fcard" href="${esc(f.link)}" ${alvo(f.link)}>
+        <span class="top"><span class="area">${esc(f.area)}</span>${f.restrito ? CAD : ""}</span>
+        <h3>${esc(f.nome)}</h3><p>${esc(f.texto)}</p><span class="ir">Abrir ${SETAD}</span>
+      </a>`).join("");
+    document.querySelectorAll(".chip").forEach(c => c.classList.toggle("at", c.textContent===a));
+  };
+  $("#chips").innerHTML = areas.map(a => `<button class="chip">${esc(a)}</button>`).join("");
+  document.querySelectorAll(".chip").forEach(c => c.onclick = () => pinta(c.textContent));
+  pinta("Todas");
+}
+
+/* ---- AVISOS ---- */
+if ($("#avisos")){
+  const av = [...D.avisos].sort((a,b) => dt(b.data) - dt(a.data));
+  const novos = av.filter(a => (hoje - dt(a.data)) / 864e5 <= 7).length;
+  $("#nav").textContent = novos ? `${novos} novo${novos>1?"s":""}` : "";
+  $("#avisos").innerHTML = av.map(a => { const d = dt(a.data), nv = (hoje - d)/864e5 <= 7; return `
+    <div class="aviso"><button aria-expanded="false">
+      <span class="dt"><b>${d.getDate()}</b><small>${MES[d.getMonth()]}</small></span>
+      <span><span class="ct">${nv ? '<span class="novo">Novo</span>' : ""}${esc(a.categoria)}</span><span class="tt">${esc(a.titulo)}</span></span>
+      <svg class="mais" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+    </button><div class="corpo"><div>${esc(a.texto)}${a.link ? `<br><a href="${esc(a.link)}" ${alvo(a.link)}>Saiba mais</a>` : ""}</div></div></div>`; }).join("");
+  document.querySelectorAll(".aviso button").forEach(b => b.onclick = () => {
+    const c = b.parentElement, cp = c.querySelector(".corpo"), ab = !c.classList.contains("ab");
+    c.classList.toggle("ab", ab); b.setAttribute("aria-expanded", ab);
+    cp.style.maxHeight = ab ? cp.scrollHeight + "px" : 0;
+  });
+}
+
+/* ---- ANIVERSARIANTES ---- */
+if ($("#niver")){
+  const m = hoje.getMonth() + 1;
+  $("#mesn").textContent = MESL[m-1];
+  const lista = D.aniversariantes.filter(p => p.mes === m).sort((a,b) => a.dia - b.dia);
+  const ini = n => n.split(" ").filter(Boolean).slice(0,2).map(x => x[0]).join("").toUpperCase();
+  $("#niver").innerHTML = lista.length ? lista.map(p => { const eh = p.dia === hoje.getDate(), pas = p.dia < hoje.getDate();
+    const msg = encodeURIComponent(`Feliz aniversário, ${p.nome.split(" ")[0]}! 🎉`);
+    return `<div class="niver ${eh ? "hoje" : ""}" style="${pas ? "opacity:.55" : ""}">
+      <span class="av">${ini(p.nome)}</span>
+      <span class="nm">${esc(p.nome)}<small>${esc(p.setor)}</small></span>
+      <span class="dia">${eh ? "Hoje" : String(p.dia).padStart(2,"0") + "/" + String(p.mes).padStart(2,"0")}<small>${eh ? "🎂" : pas ? "Já foi" : "Em breve"}</small>
+      ${eh && p.email ? `<a class="parab" target="_blank" rel="noopener" href="https://teams.microsoft.com/l/chat/0/0?users=${encodeURIComponent(p.email)}&message=${msg}">Dar parabéns</a>` : ""}</span>
+    </div>`; }).join("") : `<p class="vazio">Nenhum aniversariante este mês.</p>`;
+}
+
+/* ---- AGENDA ---- */
+if ($("#agenda")){
+  const prox = D.agenda.filter(e => dt(e.data) >= hoje).sort((a,b) => dt(a.data) - dt(b.data)).slice(0,4);
+  $("#agenda").innerHTML = prox.length ? prox.map((e,i) => { const d = dt(e.data); return `
+    <div class="ev"><span class="dt"><b>${d.getDate()}</b><small>${MES[d.getMonth()]}</small></span>
+      <span class="tt">${esc(e.titulo)}<small>${esc(e.hora)} · ${esc(e.local)}</small></span>
+      <button class="ics" title="Adicionar ao calendário" data-i="${i}"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M9 3v4M15 3v4M12 13v5M9.5 15.5h5"/></svg></button>
+    </div>`; }).join("") : `<p class="vazio">Nenhum evento programado.</p>`;
+  document.querySelectorAll(".ics").forEach(b => b.onclick = () => {
+    const e = prox[+b.dataset.i], [hh,mm] = (e.hora || "09:00").split(":");
+    const ini = e.data.replace(/-/g,"") + "T" + hh + mm + "00";
+    const fimH = String(Math.min(23, +hh + 1)).padStart(2,"0");
+    const ics = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//DBVO//Portal//PT","BEGIN:VEVENT",
+      "UID:" + ini + "-" + Math.random().toString(36).slice(2) + "@dbvo","DTSTAMP:" + new Date().toISOString().replace(/[-:]/g,"").split(".")[0] + "Z",
+      "DTSTART:" + ini, "DTEND:" + e.data.replace(/-/g,"") + "T" + fimH + mm + "00",
+      "SUMMARY:" + e.titulo, "LOCATION:" + e.local, "END:VEVENT","END:VCALENDAR"].join("\r\n");
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([ics], {type:"text/calendar"}));
+    a.download = e.titulo.replace(/[^\w\- ]+/g,"").trim() + ".ics"; a.click();
+  });
+}
+
+
+/* ---- EM CONSTRUÇÃO: lê a ponte do Comitê de Incorporação ---- */
+if ($("#palco")){
+  const secO = $("#obras");
+  fetch(D.obrasFonte, {cache:"no-cache"}).then(r => r.ok ? r.json() : Promise.reject())
+  .then(j => {
+    const ob = (j.obras || []).filter(o => o.foto);
+    if (!ob.length) throw 0;
+    $("#palco").innerHTML = ob.map(o => `<div class="slide ${o.w && o.h && o.w >= o.h ? "deitada" : ""}">
+      <div class="fundo" style="background-image:url('${esc(o.foto)}')"></div>
+      <img src="${esc(o.foto)}" alt="Obra ${esc(o.nome)}" loading="lazy"><span class="selo">Obra em andamento</span></div>`).join("");
+    const sl = [...document.querySelectorAll(".slide")], bar = $("#car-bar i");
+    let i = 0, t;
+    if (ob.length < 2){ $("#car-nav").style.display = "none"; $("#car-bar").style.display = "none"; }
+    const vai = n => {
+      i = (n + ob.length) % ob.length;
+      sl.forEach((s,k) => s.classList.toggle("at", k === i));
+      $("#car-nome").textContent = ob[i].nome;
+      $("#car-mes").textContent = ob[i].mes ? "Foto de " + ob[i].mes : "";
+      $("#car-cont").textContent = String(i+1).padStart(2,"0") + " / " + String(ob.length).padStart(2,"0");
+      if (ob.length > 1){ bar.classList.remove("run"); void bar.offsetWidth; bar.classList.add("run");
+        clearTimeout(t); t = setTimeout(() => vai(i+1), 6000); }
+    };
+    $("#car-ant").onclick = () => vai(i-1); $("#car-prox").onclick = () => vai(i+1);
+    $("#palco").onmouseenter = () => { clearTimeout(t); bar.style.animationPlayState = "paused"; };
+    $("#palco").onmouseleave = () => { bar.style.animationPlayState = "running"; if (ob.length > 1) t = setTimeout(() => vai(i+1), 3000); };
+    vai(0);
+  }).catch(() => secO && secO.remove());
+}
+
+/* ---- NÚMEROS (contam ao aparecer) ---- */
+if ($("#nums")){
+  $("#nums").innerHTML = D.numeros.map(n => `<div class="num rv"><b data-v="${n.valor}" data-ano="${n.ano ? 1 : ""}" data-p="${esc(n.prefixo)}" data-s="${esc(n.sufixo)}">${esc(n.prefixo)}0${esc(n.sufixo)}</b><span>${esc(n.rotulo)}</span></div>`).join("");
+  const conta = el => {
+    const v = +el.dataset.v, ano = el.dataset.ano, ini = ano ? v - 30 : 0, t0 = performance.now(), dur = 1600;
+    const passo = t => { const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+      const x = Math.round(ini + (v - ini) * e);
+      el.textContent = el.dataset.p + (ano ? x : x.toLocaleString("pt-BR")) + el.dataset.s;
+      if (p < 1) requestAnimationFrame(passo); };
+    requestAnimationFrame(passo);
+  };
+  const io2 = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ conta(e.target); io2.unobserve(e.target); } }), {threshold:.4});
+  document.querySelectorAll(".num b").forEach(b => io2.observe(b));
+}
+
+/* ---- VALORES ---- */
+const ICO = {
+  lampada: '<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.4 1 1.1 1 1.8V16h5v-.3c0-.7.4-1.4 1-1.8A6 6 0 0 0 12 3z"/>',
+  resultado: '<path d="M3 20h18"/><path d="M4 16l5-5 4 3 7-8"/><path d="M15 6h5v5"/>',
+  alvo: '<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/><path d="M12 12l7-7M16 5h3v3"/>',
+  escalada: '<path d="M3 21l6-9 4 5 3-4 5 8z"/><path d="M14 3v6"/><path d="M14 3l4 1.5L14 6"/>',
+  colaboracao: '<circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2 20c0-3.3 2.7-6 6-6 1.5 0 2.9.6 4 1.5A6 6 0 0 1 22 20"/>'
+};
+if ($("#vals")) $("#vals").innerHTML = D.valores.map((v,k) => `<div class="val rv">
+  <svg viewBox="0 0 24 24">${ICO[v.icone] || ICO.lampada}</svg><span class="n">${String(k+1).padStart(2,"0")}</span><h3>${esc(v.nome)}</h3></div>`).join("");
+
+/* ---- MOMENTOS ---- */
+if ($("#trilho")){
+  const m = D.momentos || [];
+  const itens = m.length ? m.map(f => `<figure class="foto" data-src="${esc(f.foto)}" data-leg="${esc(f.legenda || "")}"><img src="${esc(f.foto)}" alt="${esc(f.legenda || "")}" loading="lazy">${f.legenda ? `<figcaption>${esc(f.legenda)}</figcaption>` : ""}</figure>`)
+                         : Array.from({length:6}, () => `<figure class="foto vaga">Foto em breve</figure>`);
+  let html = itens.join("");
+  while (html.split("<figure").length - 1 < 8) html += itens.join("");   // garante faixa cheia
+  $("#trilho").innerHTML = html + html;                                    // duplica p/ rolagem contínua
+  const cx = $("#caixa");
+  $("#trilho").addEventListener("click", e => { const f = e.target.closest(".foto[data-src]"); if (!f) return;
+    cx.querySelector("img").src = f.dataset.src; cx.querySelector("p").textContent = f.dataset.leg; cx.classList.add("on"); });
+  cx.onclick = () => cx.classList.remove("on");
+  document.addEventListener("keydown", e => { if (e.key === "Escape") cx.classList.remove("on"); });
+}
+
+/* ---- VÍDEO (carrega o player só no clique) ---- */
+if ($("#vid")){
+  const v = D.video; $("#vtit").textContent = v.titulo;
+  $("#vid").innerHTML = `<img src="https://i.ytimg.com/vi/${v.youtube}/maxresdefault.jpg" alt=""><div class="play"><i><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></i><b>Assistir</b></div>`;
+  $("#vid").onclick = function(){ this.innerHTML = `<iframe src="https://www.youtube.com/embed/${v.youtube}?autoplay=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${esc(v.titulo)}"></iframe>`; this.onclick = null; };
+}
+
+/* ---- REDES ---- */
+if ($("#redesg")) $("#redesg").innerHTML = D.redes.map(r => `
+  <div class="rede rv">${r.logo ? logo(r.logo) : `<span class="nmm">${esc(r.marca)}</span>`}
+    <ul>${r.links.map(x => `<li><a href="${esc(x.link)}" target="_blank" rel="noopener">${esc(x.rede)}${SETA}</a></li>`).join("")}</ul>
+  </div>`).join("");
+
+/* ---- animação ao rolar ---- */
+const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add("on"); io.unobserve(e.target); } }), {threshold:.12});
+document.querySelectorAll(".rv").forEach((el,i) => { el.style.transitionDelay = (i % 4) * 70 + "ms"; io.observe(el); });
+})();
+</script>
+</body>
+</html>
