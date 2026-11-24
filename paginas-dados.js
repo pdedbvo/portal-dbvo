@@ -514,6 +514,7 @@ window.PAGINAS = {
       { area: "CSUA", nome: "Portal DP", sigla: "DP", d: "Gestão de pessoas e relacionamento: férias, holerite e solicitações ao DP.", u: "https://portal-dp-bravo-881c5.web.app", login: true },
       { area: "CSUA", nome: "Central de Serviços", sigla: "CS", d: "Tickets centralizados: abra e acompanhe pedidos para as áreas.", u: "https://pdedbvo.github.io/CentralDeServicos/" },
       { area: "BA",   nome: "OKRs", sigla: "OKR", d: "Gestão de objetivos e resultados: lance o realizado dos seus KRs.", u: "https://okrs---bravo.web.app/", login: true },
+      { area: "BA",   nome: "Estúdio", sigla: "EST", d: "Configurações do SharePoint: textos, fotos, avisos, empresas e times das páginas.", u: "https://pdedbvo.github.io/okrs-sharepoint/estudio/", login: true },
       { area: "BA",   nome: "Comitê de Incorporação", sigla: "CI", d: "Andamento das obras e fotos do mês de cada empreendimento.", u: "https://comite-de-incorporacao.web.app/", sugestao: true },
       { area: "CSUM", nome: "Comitê de Growth", sigla: "CG", d: "Indicadores e decisões do comitê comercial e de marketing.", u: "https://comite-de-growth---comercial.web.app/", login: true },
       { area: "CSUM", nome: "Weekly", sigla: "WK", d: "Gestão de atividades: o que cada um entrega na semana.", u: "https://weekly-social.web.app/", login: true }
