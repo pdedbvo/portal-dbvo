@@ -2,7 +2,14 @@
 
 ## Arquivos
 - `index.html`: a página (layout e funcionamento)
-- `dados.js`: **todo o conteúdo** (empresas, ferramentas, avisos, aniversariantes, agenda, vídeo e redes). Para mudar o conteúdo, edite só este arquivo.
+- `dados.js`: conteúdo **de reserva** (empresas, ferramentas, avisos, aniversariantes, agenda, vídeo e redes).
+- `estudio.js`: lê o conteúdo editado no **Estúdio** (https://pdedbvo.github.io/okrs-sharepoint/estudio/) e põe por cima do `dados.js` / `paginas-dados.js`.
+
+## Como mudar o conteúdo
+Use o **Estúdio**: missão, propósito, números, valores, vídeo, Momentos, mural, seções ligadas e Central de ferramentas.
+A mudança aparece em até 10 minutos (cada navegador guarda uma cópia por 10 min). Se o banco falhar, a página usa o que está nos arquivos `.js`.
+Ainda só no código: empresas da página inicial, redes sociais, Dúvidas frequentes, Estratégia de marca e Rotinas (`paginas-dados.js`).
+`?estudio=nao` no link ignora o Estúdio (para testes).
 - `assets/logos`: logos com fundo transparente. A cor dos logos é aplicada pelo código.
 - `assets/fonts`: fonte N27
 

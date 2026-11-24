@@ -385,8 +385,9 @@ footer{padding:28px 0;border-top:1px solid var(--linha);font-size:12px;letter-sp
 <footer data-secao="rodape"><div class="wrap">DBVO · Página inicial</div></footer>
 
 <script src="dados.js"></script>
+<script src="estudio.js"></script>
 <script>
-(function(){
+window.__pagina = function(){
 const D = window.DADOS, $ = s => document.querySelector(s);
 const MES = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
 const MESL = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
@@ -626,7 +627,8 @@ if ($("#redesg")) $("#redesg").innerHTML = D.redes.map(r => `
 /* ---- animação ao rolar ---- */
 const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add("on"); io.unobserve(e.target); } }), {threshold:.12});
 document.querySelectorAll(".rv").forEach((el,i) => { el.style.transitionDelay = (i % 4) * 70 + "ms"; io.observe(el); });
-})();
+};
+estudioIniciar(d => { aplicarEstudioPortal(window.DADOS, d); window.__pagina(); });
 </script>
 </body>
 </html>
