@@ -40,3 +40,13 @@ Também dá para juntar seções: `?secao=topo,empresas`. Sem o parâmetro, a p�
 - **Fotos das obras:** automáticas. Basta subir a foto do mês em Bases → FOTOS DO PROJETO no site do Comitê de Incorporação; aparece em até ~2 h.
 - **Fotos de momentos:** coloque a imagem em `assets/momentos/` e adicione uma linha em `momentos` no `dados.js` (foto + legenda). Prefira fotos deitadas, até ~1600 px.
 - **Números e valores:** no `dados.js`.
+
+## Páginas avulsas (`paginas.html`)
+Conteúdo em `paginas-dados.js`. Um iframe por página do SharePoint (seção de largura total):
+
+| Página do SharePoint | `paginas.html?pagina=` | Altura sugerida |
+|---|---|---|
+| `/SitePages/DUVIDASFREQUENTES.aspx` | `duvidas` (`&abrir=<id>` abre uma pergunta) | 1600 |
+| `/SitePages/ESTRATEGIADEMARCA.aspx` | `marca` (`&marca=EDIFICA` já abre uma marca) | 2150 |
+| `/SitePages/ROTINAS.aspx` | `rotinas` (deixe a biblioteca nativa logo abaixo) | 860 |
+| `/SitePages/CentralDeFerramentas.aspx` | `ferramentas` | 950 |
