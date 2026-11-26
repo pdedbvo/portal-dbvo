@@ -66,7 +66,7 @@ function aplicarEstudioPortal(D, d) {
   } catch (e) { console.warn('Estúdio: conteúdo ignorado', e); }
 }
 
-/* Páginas (paginas-dados.js): Central de ferramentas e Onboarding. */
+/* Páginas (paginas-dados.js): por enquanto a Central de ferramentas. */
 function aplicarEstudioPaginas(P, d) {
   if (!d) return;
   try {
@@ -74,15 +74,6 @@ function aplicarEstudioPaginas(P, d) {
     if (F && Array.isArray(F.itens) && F.itens.length) {
       P.ferramentas.itens = F.itens.filter(f => f && f.nome);
       if (Array.isArray(F.areas) && F.areas.length) P.ferramentas.areas = F.areas;
-    }
-    /* Onboarding (doc conteudo/onboarding): troca só os blocos que vieram preenchidos */
-    const O = d.onboarding;
-    if (O && typeof O === 'object' && P.onboarding) {
-      ['agenda', 'contato'].forEach(k => { if (typeof O[k] === 'string' && O[k]) P.onboarding[k] = O[k]; });
-      if (O.forms && typeof O.forms === 'object') P.onboarding.forms = Object.assign({}, P.onboarding.forms, O.forms);
-      if (O.rs && Array.isArray(O.rs.tipos) && O.rs.tipos.length) P.onboarding.rs = O.rs;
-      ['jornada', 'fases', 'experiencia', 'links'].forEach(k => { if (Array.isArray(O[k]) && O[k].length) P.onboarding[k] = O[k]; });
-      if (O.desligamento && O.desligamento.t) P.onboarding.desligamento = O.desligamento;
     }
   } catch (e) { console.warn('Estúdio: conteúdo ignorado', e); }
 }

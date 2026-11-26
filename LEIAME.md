@@ -58,4 +58,3 @@ Conteúdo em `paginas-dados.js`. Um iframe por página do SharePoint (seção de
 | `/SitePages/ESTRATEGIADEMARCA.aspx` | `marca` (`&marca=EDIFICA` já abre uma marca) | 2150 |
 | `/SitePages/ROTINAS.aspx` | `rotinas` (deixe a biblioteca nativa logo abaixo) | 860 |
 | `/SitePages/CentralDeFerramentas.aspx` | `ferramentas` | 950 |
-| `/SitePages/ONBOARDING.aspx` | `onboarding` (agenda: `agenda`, ver `ONBOARDING-AGENDA.md`) | 2500 |
