@@ -45,6 +45,7 @@ Também dá para juntar seções: `?secao=topo,empresas`. Sem o parâmetro, a p�
 
 ## Atualizações
 - **Fotos das obras:** automáticas. Basta subir a foto do mês em Bases → FOTOS DO PROJETO no site do Comitê de Incorporação; aparece em até ~2 h.
+- **Indicadores das obras (VGV, % vendido, avanço físico, entrega):** automáticos, lidos de `hub/resumo.json` do Comitê de Incorporação e mostrados no carrossel "Em construção". Liga/desliga e selo "Dados provisórios" no Estúdio (Página inicial → Seções visíveis) ou em `exibir` no `dados.js`. Se o arquivo não puder ser lido, o carrossel fica como antes.
 - **Fotos de momentos:** coloque a imagem em `assets/momentos/` e adicione uma linha em `momentos` no `dados.js` (foto + legenda). Prefira fotos deitadas, até ~1600 px.
 - **Números e valores:** no `dados.js`.
 

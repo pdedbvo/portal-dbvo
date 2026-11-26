@@ -181,16 +181,6 @@ section{padding:56px 0}
 .ind .fis{height:3px;background:rgba(200,200,200,.25);border-radius:2px;margin-top:7px;overflow:hidden}
 .ind .fis i{display:block;height:100%;background:var(--branco);transition:width .9s var(--ease)}
 .prov{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--claro);border:1px dashed rgba(200,200,200,.6);border-radius:999px;padding:5px 11px;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-/* bloco separado (opção B) */
-.indb{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.indc{background:var(--sup);border-radius:var(--raio);padding:20px;min-width:0}
-.indc h3{font-size:16px;font-weight:700;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.indc .cod{font-size:11px;letter-spacing:.16em;color:var(--cinza)}
-.indc dl{display:grid;grid-template-columns:1fr 1fr;gap:14px 10px;margin-top:16px}
-.indc dt{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--cinza);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.indc dd{font-size:18px;font-weight:700;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.indc .fis{height:3px;background:rgba(100,100,100,.25);border-radius:2px;margin-top:6px;overflow:hidden}.indc .fis i{display:block;height:100%;background:var(--preto)}
-#indicadores .prov{color:var(--cinza);border-color:var(--cinza);margin:0}
 
 /* =============== EM CONSTRUÇÃO =============== */
 #obras .car{background:var(--preto);color:var(--branco);border-radius:22px;padding:32px}
@@ -261,11 +251,11 @@ footer{padding:28px 0;border-top:1px solid var(--linha);font-size:12px;letter-sp
   .hero-mid,.mural,.vbox,.car{grid-template-columns:1fr}
   .hero{padding:28px 24px}
   .vals{grid-template-columns:repeat(3,1fr)}
-  .emp,.redes,.indb{grid-template-columns:repeat(2,1fr)}
+  .emp,.redes{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:560px){
   .wrap{padding:0 16px}
-  .emp,.redes,.indb{grid-template-columns:1fr}
+  .emp,.redes{grid-template-columns:1fr}
   .nums{grid-template-columns:1fr 1fr}.num,.num:not(:nth-child(3n+1)){padding:22px 12px;border-left:0}
   .vals{grid-template-columns:1fr 1fr}
   .card .info{opacity:1;transform:none}
@@ -331,14 +321,6 @@ footer{padding:28px 0;border-top:1px solid var(--linha);font-size:12px;letter-sp
     </div>
     <div class="palco" id="palco"></div>
   </div></div>
-</section>
-
-<!-- ===================== INDICADORES (bloco separado, ?secao=indicadores) ===================== -->
-<section id="indicadores" data-secao="indicadores" hidden>
-  <div class="wrap">
-    <div class="cab"><div><p class="eyebrow">Empreendimentos</p><h2 class="h2">Obras em números</h2></div><p class="prov" id="indb-prov" hidden></p></div>
-    <div class="indb" id="indb"></div>
-  </div>
 </section>
 
 <!-- ===================== NÚMEROS ===================== -->
@@ -623,20 +605,6 @@ if ($("#palco")){
   }).catch(() => secO && secO.remove());
 }
 
-
-/* ---- INDICADORES em bloco separado (?secao=indicadores) ---- */
-if ($("#indb") && indLigado()){
-  Promise.all([fetch(D.obrasFonte,{cache:"no-cache"}).then(r => r.ok ? r.json() : {}).catch(() => ({})), buscaResumo()]).then(([j, R]) => {
-    const ob = (j.obras || []).map(o => ({o, x: indicadoresDe(o, R)})).filter(e => e.x);
-    if (!ob.length) return;
-    $("#indb").innerHTML = ob.map(({o,x}) => `<div class="indc"><p class="cod">${esc(o.codigo)}</p><h3 title="${esc(o.nome)}">${esc(o.nome)}</h3><dl>
-      <div><dt>VGV</dt><dd>${fmtVgv(x.vgv)}</dd></div><div><dt>Vendido</dt><dd>${fmtPct(x.vend)}</dd></div>
-      <div><dt>Avanço físico</dt><dd>${fmtPct(x.fis)}</dd><div class="fis"><i style="width:${Math.round((x.fis||0)*100)}%"></i></div></div>
-      <div><dt>Entrega prevista</dt><dd>${fmtMes(x.ent)}</dd></div></dl></div>`).join("");
-    if ((D.exibir || {}).provisorio !== false){ $("#indb-prov").hidden = false; $("#indb-prov").textContent = provTxt(ob[0].x.base); }
-    $("#indicadores").hidden = false;
-  });
-}
 
 /* ---- NÚMEROS (contam ao aparecer) ---- */
 if ($("#nums")){
