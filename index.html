@@ -171,6 +171,27 @@ section{padding:56px 0}
 .rede li a:hover svg{stroke:var(--preto);transform:translate(2px,-2px)}
 
 
+
+[hidden]{display:none!important}
+/* indicadores do empreendimento (Comitê de Incorporação) */
+.ind{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:18px;max-width:380px}
+.ind>div{background:rgba(200,200,200,.1);border-radius:10px;padding:10px 12px;min-width:0}
+.ind span{display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--claro);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ind b{display:block;font-size:20px;font-weight:700;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ind .fis{height:3px;background:rgba(200,200,200,.25);border-radius:2px;margin-top:7px;overflow:hidden}
+.ind .fis i{display:block;height:100%;background:var(--branco);transition:width .9s var(--ease)}
+.prov{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--claro);border:1px dashed rgba(200,200,200,.6);border-radius:999px;padding:5px 11px;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* bloco separado (opção B) */
+.indb{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.indc{background:var(--sup);border-radius:var(--raio);padding:20px;min-width:0}
+.indc h3{font-size:16px;font-weight:700;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.indc .cod{font-size:11px;letter-spacing:.16em;color:var(--cinza)}
+.indc dl{display:grid;grid-template-columns:1fr 1fr;gap:14px 10px;margin-top:16px}
+.indc dt{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--cinza);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.indc dd{font-size:18px;font-weight:700;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.indc .fis{height:3px;background:rgba(100,100,100,.25);border-radius:2px;margin-top:6px;overflow:hidden}.indc .fis i{display:block;height:100%;background:var(--preto)}
+#indicadores .prov{color:var(--cinza);border-color:var(--cinza);margin:0}
+
 /* =============== EM CONSTRUÇÃO =============== */
 #obras .car{background:var(--preto);color:var(--branco);border-radius:22px;padding:32px}
 #obras .eyebrow{color:var(--claro)}#obras .eyebrow::before{background:var(--branco)}
@@ -240,11 +261,11 @@ footer{padding:28px 0;border-top:1px solid var(--linha);font-size:12px;letter-sp
   .hero-mid,.mural,.vbox,.car{grid-template-columns:1fr}
   .hero{padding:28px 24px}
   .vals{grid-template-columns:repeat(3,1fr)}
-  .emp,.redes{grid-template-columns:repeat(2,1fr)}
+  .emp,.redes,.indb{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:560px){
   .wrap{padding:0 16px}
-  .emp,.redes{grid-template-columns:1fr}
+  .emp,.redes,.indb{grid-template-columns:1fr}
   .nums{grid-template-columns:1fr 1fr}.num,.num:not(:nth-child(3n+1)){padding:22px 12px;border-left:0}
   .vals{grid-template-columns:1fr 1fr}
   .card .info{opacity:1;transform:none}
@@ -298,6 +319,8 @@ footer{padding:28px 0;border-top:1px solid var(--linha);font-size:12px;letter-sp
       <p class="eyebrow">Em construção</p>
       <h2 class="h2" id="car-nome"></h2>
       <p class="mes" id="car-mes"></p>
+      <div class="ind" id="car-ind" hidden></div>
+      <p class="prov" id="car-prov" hidden></p>
       <p class="nota">A foto mais recente de cada obra, atualizada todo mês direto do canteiro.</p>
       <div class="car-nav" id="car-nav">
         <button id="car-ant" aria-label="Obra anterior"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
@@ -308,6 +331,14 @@ footer{padding:28px 0;border-top:1px solid var(--linha);font-size:12px;letter-sp
     </div>
     <div class="palco" id="palco"></div>
   </div></div>
+</section>
+
+<!-- ===================== INDICADORES (bloco separado, ?secao=indicadores) ===================== -->
+<section id="indicadores" data-secao="indicadores" hidden>
+  <div class="wrap">
+    <div class="cab"><div><p class="eyebrow">Empreendimentos</p><h2 class="h2">Obras em números</h2></div><p class="prov" id="indb-prov" hidden></p></div>
+    <div class="indb" id="indb"></div>
+  </div>
 </section>
 
 <!-- ===================== NÚMEROS ===================== -->
@@ -541,11 +572,26 @@ if ($("#agenda")){
 }
 
 
+
+/* ---- INDICADORES DOS EMPREENDIMENTOS (Comitê de Incorporação) ----
+   Lê vgv / vendido / fisico / entrega de cada obra (em obras-fotos.json ou D.indicadoresFonte).
+   Liga/desliga: D.exibir.indicadores; selo "Dados provisórios": D.exibir.provisorio. */
+const MESC = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+const fmtMes = s => { const m = /^(\d{4})-(\d{2})/.exec(s || ""); return m ? MESC[+m[2]-1] + "/" + m[1].slice(2) : (s || "—"); };
+const fmtPct = v => v == null || isNaN(v) ? "—" : (v * 100).toLocaleString("pt-BR",{minimumFractionDigits:1,maximumFractionDigits:1}) + "%";
+const fmtVgv = v => !v ? "—" : "R$ " + (v / 1e6).toLocaleString("pt-BR",{minimumFractionDigits:1,maximumFractionDigits:1}) + " mi";
+function indicadoresDe(o, R){ const r = (R && R[o.codigo]) || {};
+  const x = { vgv: o.vgv ?? r.vgvTotal, vend: o.vendido ?? r.pctVend, fis: o.fisico ?? r.fis, ent: o.entrega ?? r.entrega, base: o.base ?? r.base };
+  return x.vgv || x.vend != null || x.fis != null || x.ent ? x : null; }
+const indLigado = () => (D.exibir || {}).indicadores !== false;
+const provTxt = b => "Dados provisórios" + (b ? " · base " + fmtMes(b) : "");
+function buscaResumo(){ return D.indicadoresFonte ? fetch(D.indicadoresFonte,{cache:"no-cache"}).then(r => r.ok ? r.json() : null).catch(() => null) : Promise.resolve(null); }
+
 /* ---- EM CONSTRUÇÃO: lê a ponte do Comitê de Incorporação ---- */
 if ($("#palco")){
   const secO = $("#obras");
-  fetch(D.obrasFonte, {cache:"no-cache"}).then(r => r.ok ? r.json() : Promise.reject())
-  .then(j => {
+  Promise.all([fetch(D.obrasFonte, {cache:"no-cache"}).then(r => r.ok ? r.json() : Promise.reject()), indLigado() ? buscaResumo() : null])
+  .then(([j, R]) => {
     const ob = (j.obras || []).filter(o => o.foto);
     if (!ob.length) throw 0;
     $("#palco").innerHTML = ob.map(o => `<div class="slide ${o.w && o.h && o.w >= o.h ? "deitada" : ""}">
@@ -559,6 +605,13 @@ if ($("#palco")){
       sl.forEach((s,k) => s.classList.toggle("at", k === i));
       $("#car-nome").textContent = ob[i].nome;
       $("#car-mes").textContent = ob[i].mes ? "Foto de " + ob[i].mes : "";
+      const x = indLigado() && indicadoresDe(ob[i], R), ci = $("#car-ind"), cp = $("#car-prov");
+      ci.hidden = !x; cp.hidden = !x || (D.exibir || {}).provisorio === false;
+      $("#obras .nota").hidden = !!x;
+      if (x){ ci.innerHTML = `<div><span>VGV</span><b>${fmtVgv(x.vgv)}</b></div><div><span>Vendido</span><b>${fmtPct(x.vend)}</b></div>
+        <div><span>Avanço físico</span><b>${fmtPct(x.fis)}</b><div class="fis"><i style="width:${Math.round((x.fis||0)*100)}%"></i></div></div>
+        <div><span>Entrega prevista</span><b>${fmtMes(x.ent)}</b></div>`;
+        cp.textContent = provTxt(x.base); }
       $("#car-cont").textContent = String(i+1).padStart(2,"0") + " / " + String(ob.length).padStart(2,"0");
       if (ob.length > 1){ bar.classList.remove("run"); void bar.offsetWidth; bar.classList.add("run");
         clearTimeout(t); t = setTimeout(() => vai(i+1), 6000); }
@@ -568,6 +621,21 @@ if ($("#palco")){
     $("#palco").onmouseleave = () => { bar.style.animationPlayState = "running"; if (ob.length > 1) t = setTimeout(() => vai(i+1), 3000); };
     vai(0);
   }).catch(() => secO && secO.remove());
+}
+
+
+/* ---- INDICADORES em bloco separado (?secao=indicadores) ---- */
+if ($("#indb") && indLigado()){
+  Promise.all([fetch(D.obrasFonte,{cache:"no-cache"}).then(r => r.ok ? r.json() : {}).catch(() => ({})), buscaResumo()]).then(([j, R]) => {
+    const ob = (j.obras || []).map(o => ({o, x: indicadoresDe(o, R)})).filter(e => e.x);
+    if (!ob.length) return;
+    $("#indb").innerHTML = ob.map(({o,x}) => `<div class="indc"><p class="cod">${esc(o.codigo)}</p><h3 title="${esc(o.nome)}">${esc(o.nome)}</h3><dl>
+      <div><dt>VGV</dt><dd>${fmtVgv(x.vgv)}</dd></div><div><dt>Vendido</dt><dd>${fmtPct(x.vend)}</dd></div>
+      <div><dt>Avanço físico</dt><dd>${fmtPct(x.fis)}</dd><div class="fis"><i style="width:${Math.round((x.fis||0)*100)}%"></i></div></div>
+      <div><dt>Entrega prevista</dt><dd>${fmtMes(x.ent)}</dd></div></dl></div>`).join("");
+    if ((D.exibir || {}).provisorio !== false){ $("#indb-prov").hidden = false; $("#indb-prov").textContent = provTxt(ob[0].x.base); }
+    $("#indicadores").hidden = false;
+  });
 }
 
 /* ---- NÚMEROS (contam ao aparecer) ---- */
