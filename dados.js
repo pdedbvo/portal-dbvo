@@ -12,7 +12,9 @@ window.DADOS = {
      Mude para true quando o conteúdo estiver preenchido. */
   exibir: {
     ferramentas: false,   // falta preencher os links reais
-    mural: false          // avisos, aniversariantes e agenda
+    mural: false,         // avisos, aniversariantes e agenda
+    indicadores: true,    // VGV, % vendido, avanço físico e entrega no carrossel "Em construção"
+    provisorio: true      // selo "Dados provisórios" nos indicadores (desligar quando os dados forem oficiais)
   },
 
   /* Foto de fundo do cabeçalho (opcional). Ex.: "assets/topo.jpg" ou um link.
@@ -70,6 +72,7 @@ window.DADOS = {
      Puxa sozinho a foto do mês de cada obra do site do Comitê de Incorporação.
      Para atualizar: subir a foto em Bases → FOTOS DO PROJETO. Nada a fazer aqui. */
   obrasFonte: "https://comite-de-incorporacao.web.app/obras/obras-fotos.json",
+  indicadoresFonte: "https://comite-de-incorporacao.web.app/hub/resumo.json",
 
   /* ---------- O GRUPO EM NÚMEROS ---------- */
   numeros: [
