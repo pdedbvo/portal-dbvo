@@ -249,6 +249,184 @@ section.bl{margin-top:36px}
   .mc-cor{height:76px}
   .det-l,.det-r{padding:20px}
 }
+/* =============== ONBOARDING =============== */
+.jr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.jc{position:relative;display:flex;align-items:center;gap:14px;min-height:66px;padding:12px 34px 12px 34px;background:var(--sup);color:var(--cinza);clip-path:polygon(0 0,calc(100% - 20px) 0,100% 50%,calc(100% - 20px) 100%,0 100%,20px 50%);transition:background .3s var(--ease),color .3s,transform .3s var(--ease);min-width:0}
+.jc:first-child{clip-path:polygon(0 0,calc(100% - 20px) 0,100% 50%,calc(100% - 20px) 100%,0 100%);padding-left:20px}
+.jc .n{font-size:11px;letter-spacing:.14em;flex:none;font-variant-numeric:tabular-nums}
+.jc b{font-size:14px;letter-spacing:.1em;text-transform:uppercase;line-height:1.2;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.jc small{margin-left:auto;flex:none;font-size:10px;letter-spacing:.14em;text-transform:uppercase;opacity:.8}
+a.jc{background:var(--preto);color:var(--branco)}
+a.jc .n{color:var(--claro)}
+a.jc:hover{transform:translateY(-3px);background:#000}
+.jr-pe{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;font-size:12px;color:var(--cinza);letter-spacing:.04em}
+.jr-pe i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:6px;background:var(--preto)}
+.jr-pe i.cz{background:var(--claro)}
+
+.rs{display:flex;flex-direction:column;gap:6px}
+.rs-h,.rs-l{display:grid;grid-template-columns:150px minmax(0,1.25fr) repeat(5,minmax(0,1fr));gap:6px}
+.rs-h span{background:var(--preto);color:var(--branco);border-radius:10px;padding:12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.3}
+.rs-h span:nth-child(-n+2){justify-content:flex-start;text-align:left}
+.rs-n{border-radius:10px;padding:14px;background:var(--c);color:var(--t);display:flex;flex-direction:column;justify-content:center;gap:4px}
+.rs-n b{font-size:15px;text-transform:uppercase;letter-spacing:.06em}
+.rs-n small{font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+.rs-c,.rs-e{border-radius:10px;background:var(--sup);padding:14px;font-size:13px;line-height:1.4;display:flex;align-items:center;min-width:0;overflow-wrap:anywhere}
+.rs-c{font-weight:700;font-size:14px}
+.rs-e{justify-content:center;text-align:center}
+.rs-e small{display:none}
+.rs-e.vz{color:var(--claro)}
+.rs-pe{margin-top:10px;font-size:12px;color:var(--cinza);line-height:1.5}
+
+.gd{display:grid;grid-template-columns:240px minmax(0,1fr);gap:14px;align-items:start}
+.gd-f{display:flex;flex-direction:column;gap:6px}
+.gd-f button{display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:10px;align-items:center;text-align:left;padding:12px 14px;border-radius:12px;background:var(--sup);transition:background .25s,color .25s}
+.gd-f button i{font-style:normal;width:30px;height:30px;border-radius:50%;background:var(--branco);display:grid;place-items:center;font-size:11px;font-weight:700}
+.gd-f button b{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gd-f button span span{display:block;font-size:11px;color:var(--cinza);letter-spacing:.06em;margin-top:2px}
+.gd-f button em{font-style:normal;font-size:11px;color:var(--cinza)}
+.gd-f button:hover{background:rgba(200,200,200,.4)}
+.gd-f button.at{background:var(--preto);color:var(--branco)}
+.gd-f button.at i{background:var(--branco);color:var(--preto)}
+.gd-f button.at span span,.gd-f button.at em{color:var(--claro)}
+.gd-l{border:1px solid var(--linha);border-radius:var(--raio);overflow:hidden}
+.gi{display:grid;grid-template-columns:120px minmax(0,1fr) minmax(0,220px);gap:16px;align-items:center;padding:14px 18px}
+.gi+.gi{border-top:1px solid var(--linha)}
+.gi .q{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--cinza);font-variant-numeric:tabular-nums}
+.gi .tt{font-weight:700;font-size:15px;line-height:1.35}
+.gi .ob{display:block;font-size:12px;color:var(--cinza);margin-top:4px}
+.gi .ob a{text-decoration:underline}
+.gi .rp{display:flex;flex-direction:column;gap:2px;font-size:12px;color:var(--cinza);text-align:right}
+.gi .rp b{color:var(--preto);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.gd-cta{margin-top:12px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:20px 22px;border-radius:var(--raio);background:var(--preto);color:var(--branco)}
+.gd-cta b{display:block;font-size:15px;text-transform:uppercase;letter-spacing:.06em}
+.gd-cta span{font-size:13px;color:var(--claro);line-height:1.5}
+
+.fms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.fm{display:flex;flex-direction:column;gap:12px;padding:24px;border-radius:var(--raio);background:var(--sup);transition:background .35s var(--ease),color .35s,transform .35s var(--ease),box-shadow .35s;min-width:0}
+.fm .num{font-weight:700;font-size:56px;line-height:.9;letter-spacing:-.02em;color:rgba(17,17,17,.14);transition:color .35s}
+.fm .num small{font-size:14px;letter-spacing:.12em;margin-left:6px}
+.fm .tg{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--cinza)}
+.fm h3{font-size:20px;font-weight:700;text-transform:uppercase;letter-spacing:.02em;line-height:1.15}
+.fm p{font-size:14px;line-height:1.5;color:var(--cinza)}
+.fm .ir{margin-top:auto;padding-top:6px;display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.fm .seta{width:38px;height:38px;border-radius:50%;background:var(--preto);display:grid;place-items:center;transition:.3s}
+.fm .seta svg{width:16px;height:16px;stroke:var(--branco)}
+.fm:hover{background:var(--preto);color:var(--branco);transform:translateY(-4px);box-shadow:0 18px 40px rgba(17,17,17,.25)}
+.fm:hover .num{color:rgba(255,255,255,.2)}
+.fm:hover p,.fm:hover .tg{color:var(--claro)}
+.fm:hover .seta{background:var(--branco)}
+.fm:hover .seta svg{stroke:var(--preto)}
+.fm.dl2 .num{font-size:40px;padding-top:10px}
+
+/* =============== AGENDA =============== */
+.ag-login{display:flex;flex-direction:column;gap:8px}
+.ag-login input{width:100%;font:inherit;font-size:15px;padding:12px 14px;border-radius:12px;border:1px solid rgba(200,200,200,.3);background:rgba(255,255,255,.06);color:var(--branco);outline:none}
+.ag-login input:focus{border-color:var(--branco)}
+.ag-login .lin{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.ag-msg{font-size:13px;color:var(--claro);min-height:18px;line-height:1.4}
+.ag-msg.er{color:#ff9d96}
+.ag-quem{font-size:13px;color:var(--claro);line-height:1.5;overflow-wrap:anywhere}
+.ag-quem b{color:var(--branco)}
+.ag-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:26px 0 14px}
+.ag-busca{position:relative;flex:0 1 300px;min-width:200px}
+.ag-busca input{width:100%;font:inherit;font-size:14px;padding:11px 14px 11px 40px;border-radius:99px;border:1px solid var(--claro);outline:none;background:var(--branco)}
+.ag-busca input:focus{border-color:var(--preto)}
+.ag-busca svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:16px;height:16px;stroke:var(--cinza)}
+.ag-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.ac{display:flex;flex-direction:column;gap:12px;text-align:left;padding:20px;border-radius:var(--raio);background:var(--sup);transition:background .3s var(--ease),color .3s,transform .3s var(--ease),box-shadow .3s;min-width:0}
+.ac:hover{background:var(--preto);color:var(--branco);transform:translateY(-3px);box-shadow:0 14px 30px rgba(17,17,17,.22)}
+.ac:hover .mt,.ac:hover .px small{color:var(--claro)}
+.ac:hover .br{background:rgba(255,255,255,.15)}
+.ac:hover .br i{background:var(--branco)}
+.ac .tp{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;min-width:0}
+.ac h4{font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;line-height:1.2;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.ac .mt{font-size:13px;color:var(--cinza);line-height:1.45;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.st{flex:none;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 9px;border-radius:99px;color:var(--branco);background:var(--cinza);white-space:nowrap}
+.st.ok{background:#2E7D32}.st.at{background:#C62828}.st.lg{background:#D9A400;color:var(--preto)}
+.br{height:6px;border-radius:99px;background:rgba(17,17,17,.1);overflow:hidden}
+.br i{display:block;height:100%;background:var(--preto);border-radius:99px}
+.px{font-size:13px;line-height:1.4;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.px small{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--cinza);margin-bottom:2px}
+.ag-vz{padding:34px;border-radius:var(--raio);border:1px dashed var(--claro);color:var(--cinza);text-align:center;font-size:14px;line-height:1.6}
+.ag-vz .pill{margin-top:14px}
+.ag-ficha{margin-top:26px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:14px;align-items:start}
+.ag-dados{border-radius:var(--raio);background:var(--sup);padding:20px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.ag-dados label,.ag-reg label{display:flex;flex-direction:column;gap:5px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--cinza);min-width:0}
+.ag-dados input,.ag-reg textarea,.gx input[type=date]{font:inherit;font-size:14px;letter-spacing:0;text-transform:none;color:var(--preto);padding:10px 12px;border-radius:10px;border:1px solid var(--linha);background:var(--branco);outline:none;width:100%;min-width:0}
+.ag-dados input:focus,.ag-reg textarea:focus,.gx input[type=date]:focus{border-color:var(--preto)}
+.ag-dados input:disabled{background:transparent;color:var(--cinza)}
+.ag-res{border-radius:var(--raio);background:var(--preto);color:var(--branco);padding:20px;display:flex;flex-direction:column;gap:14px}
+.ag-res .pc{font-weight:700;font-size:44px;line-height:1}
+.ag-res .pc small{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--claro);margin-left:8px;font-weight:400}
+.ag-res .br{background:rgba(255,255,255,.15)}.ag-res .br i{background:var(--branco)}
+.ag-res dl{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:13px}
+.ag-res dt{color:var(--claro);font-size:11px;letter-spacing:.12em;text-transform:uppercase;align-self:center}
+.ag-res dd{text-align:right;font-variant-numeric:tabular-nums}
+.ag-salvo{font-size:12px;color:var(--claro);min-height:16px}
+.ag-fases{margin-top:14px;display:flex;flex-direction:column;gap:14px}
+.af{border:1px solid var(--linha);border-radius:var(--raio);overflow:hidden}
+.af-h{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;background:var(--sup)}
+.af-h b{font-size:14px;text-transform:uppercase;letter-spacing:.1em}
+.af-h span{font-size:12px;color:var(--cinza);letter-spacing:.06em}
+.gx{display:grid;grid-template-columns:30px minmax(0,1fr) 150px;gap:14px;align-items:start;padding:14px 18px}
+.gx+.gx{border-top:1px solid var(--linha)}
+.gx .ck{width:26px;height:26px;border-radius:8px;border:2px solid var(--claro);display:grid;place-items:center;transition:.2s;margin-top:2px}
+.gx .ck svg{width:14px;height:14px;stroke:var(--branco);opacity:0}
+.gx.ok .ck{background:#2E7D32;border-color:#2E7D32}
+.gx.ok .ck svg{opacity:1}
+.gx .tt{font-weight:700;font-size:14px;line-height:1.35}
+.gx.ok .tt{color:var(--cinza)}
+.gx .mt{font-size:12px;color:var(--cinza);margin-top:3px;line-height:1.4}
+.gx .mt .at{color:#C62828;font-weight:700}
+.gx .mt .lg{color:#9a7600;font-weight:700}
+.gx .pill{margin-top:8px;padding:8px 12px;font-size:11px}
+.ag-reg{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-top:10px}
+.ag-reg textarea{min-height:40px;resize:vertical;font-size:13px;line-height:1.4}
+.gx .dt{display:flex;flex-direction:column;gap:4px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--cinza)}
+.gx .dt input{font-size:13px;padding:8px 10px}
+.ag-acoes{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:26px}
+.ag-novo{margin-top:26px;border-radius:var(--raio);background:var(--sup);padding:22px;display:flex;flex-direction:column;gap:14px}
+.ag-novo .ag-dados{padding:0;background:none;grid-template-columns:repeat(3,minmax(0,1fr))}
+.ag-demo{display:inline-block;margin-top:10px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--preto);background:#FFB484;border-radius:99px;padding:4px 10px}
+@media (max-width:980px){
+  .rs-h,.rs-l{grid-template-columns:120px minmax(0,1fr) repeat(5,minmax(0,1fr))}
+  .rs-e,.rs-c{padding:12px 10px;font-size:12px}
+  .gd{grid-template-columns:200px minmax(0,1fr)}
+  .gi{grid-template-columns:100px minmax(0,1fr)}
+  .gi .rp{grid-column:2;text-align:left;flex-direction:row;flex-wrap:wrap;gap:4px 12px}
+  .fms{grid-template-columns:1fr 1fr}
+  .ag-novo .ag-dados{grid-template-columns:1fr 1fr}
+}
+@media (max-width:820px){
+  .jr{grid-template-columns:1fr 1fr}
+  .jc,.jc:first-child{clip-path:none;border-radius:12px;padding:12px 16px;min-height:56px}
+  .rs-h{display:none}
+  .rs-l{grid-template-columns:1fr;gap:0;border-radius:var(--raio);overflow:hidden;background:var(--sup)}
+  .rs-l+.rs-l{margin-top:8px}
+  .rs-n{border-radius:0;flex-direction:row;justify-content:space-between;align-items:center}
+  .rs-c{border-radius:0;background:none;padding:12px 14px 4px}
+  .rs-e{border-radius:0;background:none;justify-content:flex-start;text-align:left;padding:7px 14px;display:grid;grid-template-columns:110px minmax(0,1fr);gap:10px}
+  .rs-e small{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--cinza);padding-top:2px}
+  .rs-e:last-child{padding-bottom:14px}
+  .rs-e.vz{display:none}
+  .gd{grid-template-columns:1fr}
+  .gd-f{flex-direction:row;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+  .gd-f button{flex:none;grid-template-columns:30px auto;min-width:0}
+  .gd-f button em{display:none}
+  .fms{grid-template-columns:1fr}
+  .ag-ficha{grid-template-columns:1fr}
+  .ag-res{order:-1}
+}
+@media (max-width:560px){
+  .jr{grid-template-columns:1fr}
+  .jc small{display:none}
+  .gi{grid-template-columns:1fr;gap:6px;padding:14px}
+  .gi .rp{grid-column:1}
+  .ag-dados,.ag-novo .ag-dados{grid-template-columns:1fr}
+  .gx{grid-template-columns:28px minmax(0,1fr);gap:12px;padding:14px}
+  .gx .dt{grid-column:2}
+  .ag-busca{flex:1 1 100%}
+}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}.rv{opacity:1;transform:none}}
 </style>
 </head>
@@ -322,6 +500,46 @@ section.bl{margin-top:36px}
   <div class="ajuda rv"><div><b>Precisa de acesso ou sentiu falta de uma ferramenta?</b><span>Peça pela Central de Serviços.</span></div><div class="bt" id="ff-bt"></div></div>
 </div>
 
+<!-- ===================== ONBOARDING · JORNADA DO COLABORADOR ===================== -->
+<div class="pg" id="pg-onboarding" data-pagina="onboarding">
+  <header class="hz rv"><div class="hz-pat"></div><div class="hz-brilho"></div>
+    <div class="hz-in">
+      <div><p class="hz-eb">Grupo DBVO · Gente e gestão</p><h1>Jornada do colaborador</h1>
+        <p class="l">Recrutamento, onboarding, período de experiência e desligamento: o passo a passo e os formulários de cada etapa, em um lugar.</p></div>
+      <div class="hz-acao"><div class="hz-num" id="on-num"></div><div class="dl" id="on-bt"></div></div>
+    </div>
+  </header>
+  <section class="bl"><div class="cab rv"><div><p class="eyebrow">Visão geral</p><h2 class="h2">As etapas da jornada</h2></div>
+      <p class="sub">Clique em uma etapa destacada para ir direto ao conteúdo.</p></div>
+    <div class="jr" id="on-jr"></div>
+    <div class="jr-pe"><span><i></i>Nesta página</span><span><i class="cz"></i>Em construção</span></div></section>
+  <section class="bl" id="on-rs"><div class="cab rv"><div><p class="eyebrow">Recrutamento e seleção</p><h2 class="h2">Etapas por nível</h2></div><div class="chips" id="on-rs-chips"></div></div>
+    <div class="rs" id="on-rs-t"></div>
+    <p class="rs-pe">Sequência: captação de CV, seleção de CV e as etapas do nível. TL = tribe leader · SL = squad leader · HS = hard skills.</p></section>
+  <section class="bl" id="on-guia"><div class="cab rv"><div><p class="eyebrow">Onboarding</p><h2 class="h2">Guia dos primeiros 90 dias</h2></div>
+      <p class="sub">O modelo padrão para toda contratação. Cada pessoa ganha a própria agenda, a partir da data de início.</p></div>
+    <div class="gd"><div class="gd-f" id="on-fases"></div><div class="gd-l" id="on-itens"></div></div>
+    <div class="gd-cta rv"><div><b>Agenda de onboarding</b><span>O líder marca o que foi feito e registra os feedbacks. O RH acompanha todas as agendas em um só lugar.</span></div><div class="dl" id="on-ag"></div></div></section>
+  <section class="bl" id="on-forms"><div class="cab rv"><div><p class="eyebrow">Formulários</p><h2 class="h2">Experiência e desligamento</h2></div>
+      <p class="sub">Os formulários abrem no Microsoft Forms com o seu login da empresa.</p></div>
+    <div class="fms" id="on-fms"></div></section>
+  <section class="bl"><div class="cab rv"><div><p class="eyebrow">Para quem chega</p><h2 class="h2">Links úteis</h2></div></div>
+    <div class="fer" id="on-links"></div></section>
+  <div class="ajuda rv"><div><b>Dúvida sobre a jornada?</b><span>Fale com o RH ou abra um chamado.</span></div><div class="bt" id="on-aj"></div></div>
+</div>
+
+<!-- ===================== AGENDA DE ONBOARDING ===================== -->
+<div class="pg" id="pg-agenda" data-pagina="agenda">
+  <header class="hz rv"><div class="hz-pat"></div><div class="hz-brilho"></div>
+    <div class="hz-in">
+      <div><p class="hz-eb">Grupo DBVO · Jornada do colaborador</p><h1>Agenda de onboarding</h1>
+        <p class="l">Uma ficha por contratação, com o guia padrão já preenchido. Marque o que foi feito e registre os feedbacks.</p><span id="ag-demo"></span></div>
+      <div class="hz-acao" id="ag-conta"></div>
+    </div>
+  </header>
+  <div id="ag-corpo"></div>
+</div>
+
 </div>
 
 <script src="paginas-dados.js"></script>
@@ -331,7 +549,7 @@ const LOGOS={"edifica": "iVBORw0KGgoAAAANSUhEUgAAA4QAAADiCAYAAAAWCwnhAABfG0lEQVR
 window.__pagina = function(){
 const P = window.PAGINAS, $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const sp = u => !u ? "" : /^(https?|mailto):/.test(u) ? u : P.site + encodeURI(u);
+const sp = u => !u ? "" : /^(https?|mailto):|^#/.test(u) ? u : P.site + encodeURI(u);
 const ext = u => /^https?:/.test(u) && !u.includes("sharepoint.com");
 const alvo = u => /^mailto:/.test(u) ? "" : ext(u) ? 'target="_blank" rel="noopener"' : 'target="_top"';
 const SETA = '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg>';
@@ -343,7 +561,7 @@ const logo = (k, cor, cls="") => LOGOS[k] ? `<i class="logo ${cls}" style="--src
 const claro = hex => { const n = parseInt(hex.slice(1),16), r=n>>16, g=n>>8&255, b=n&255; return (r*299+g*587+b*114)/1000 > 150; };
 const pill = (t, u, cls="pill", ic=SETA) => u ? `<a class="${cls}" href="${esc(sp(u))}" ${alvo(sp(u))}>${esc(t)} ${ic}</a>` : `<span class="${cls} off" title="Link ainda não cadastrado">${esc(t)}</span>`;
 
-/* ---- qual página: ?pagina=duvidas|marca|rotinas|ferramentas (sem parâmetro: todas) ---- */
+/* ---- qual página: ?pagina=duvidas|marca|rotinas|ferramentas|onboarding|agenda (sem parâmetro: todas) ---- */
 const qs = new URLSearchParams(location.search), pag = (qs.get("pagina") || "").toLowerCase();
 $$(".pg").forEach(p => { if (!pag || p.dataset.pagina === pag) p.classList.add("on"); else p.remove(); });
 
@@ -468,6 +686,265 @@ if ($("#ff-areas")){
   $("#ff").addEventListener("input", e => { termo = e.target.value; pinta(); });
   pinta();
   $("#ff-bt").innerHTML = pill("Abrir chamado", P.chamado, "pill pr");
+}
+
+/* =============== ONBOARDING =============== */
+const ON = P.onboarding || {};
+const formU = k => (ON.forms || {})[k] || "";
+if ($("#on-jr")){
+  const J = ON.jornada || [], F = ON.fases || [];
+  $("#on-num").innerHTML = `<span><b>${J.length}</b>etapas</span><span><b>${F.reduce((n,f) => n + f.itens.length, 0)}</b>atividades no guia</span><span><b>3</b>formulários</span>`;
+  $("#on-bt").innerHTML = pill("Abrir agenda de onboarding", ON.agenda, "pill") + pill("Etapas de R&S", "#on-rs", "pill ol", SETAD);
+  $("#on-jr").innerHTML = J.map((e,k) => e.ancora
+    ? `<a class="jc rv" href="#${esc(e.ancora)}"><span class="n">${String(k+1).padStart(2,"0")}</span><b>${esc(e.t)}</b></a>`
+    : `<div class="jc rv"><span class="n">${String(k+1).padStart(2,"0")}</span><b>${esc(e.t)}</b><small>Em breve</small></div>`).join("");
+  $$('#pg-onboarding a[href^="#"]').forEach(a => a.removeAttribute("target"));
+  $("#pg-onboarding").addEventListener("click", e => { const a = e.target.closest('a[href^="#"]'); if (!a) return;
+    const el = document.getElementById(a.getAttribute("href").slice(1)); if (el){ e.preventDefault(); el.scrollIntoView({behavior:"smooth", block:"start"}); } });
+  /* R&S */
+  const RS = ON.rs || {tipos:[], colunas:[]}; let tipo = (RS.tipos[0] || {}).id;
+  const CN = {"Estratégico":["#111111","#FFFFFF"], "Tático":["#646464","#FFFFFF"], "Operacional":["#C8C8C8","#111111"]};
+  $("#on-rs-chips").innerHTML = RS.tipos.map(t => `<button class="chip" data-t="${esc(t.id)}">${esc(t.nome)}</button>`).join("");
+  const pintaRS = () => {
+    const T = RS.tipos.find(t => t.id === tipo); if (!T) return;
+    $("#on-rs-t").innerHTML = `<div class="rs-h"><span>Nível</span><span>Cargos</span>${RS.colunas.map(c => `<span>${esc(c)}</span>`).join("")}</div>` +
+      T.niveis.map(n => { const c = CN[n.nivel] || CN["Tático"], q = n.etapas.slice(2).filter(Boolean).length;
+        return `<div class="rs-l"><div class="rs-n" style="--c:${c[0]};--t:${c[1]}"><b>${esc(n.nivel)}</b><small>${q} ${q===1 ? "etapa" : "etapas"}</small></div>
+          <div class="rs-c">${esc(n.cargos)}</div>
+          ${RS.colunas.map((col,i) => n.etapas[i] ? `<div class="rs-e"><small>${esc(col)}</small><span>${esc(n.etapas[i])}</span></div>` : `<div class="rs-e vz"><small>${esc(col)}</small><span>—</span></div>`).join("")}</div>`; }).join("");
+    $$("#on-rs-chips .chip").forEach(c => c.classList.toggle("at", c.dataset.t === tipo));
+  };
+  $$("#on-rs-chips .chip").forEach(c => c.onclick = () => { tipo = c.dataset.t; pintaRS(); });
+  pintaRS();
+  /* Guia */
+  let fase = (F[0] || {}).id;
+  $("#on-fases").innerHTML = F.map((f,k) => `<button data-f="${esc(f.id)}"><i>${k===0 ? "D-" : k===F.length-1 ? "90" : "D" + k}</i><span><b>${esc(f.t)}</b><span>${esc(f.sub || "")}</span></span><em>${f.itens.length}</em></button>`).join("");
+  const pintaG = () => {
+    const f = F.find(x => x.id === fase); if (!f) return;
+    $("#on-itens").innerHTML = f.itens.map(it => `<div class="gi"><span class="q">${esc(it.h || it.q || "")}</span>
+      <span><span class="tt">${esc(it.t)}</span>${it.obs ? `<span class="ob">${esc(it.obs)}</span>` : ""}${it.form && formU(it.form) ? `<span class="ob"><a href="${esc(formU(it.form))}" target="_blank" rel="noopener">Abrir formulário</a></span>` : ""}</span>
+      <span class="rp"><b>${esc(it.resp || "")}</b>${it.fac ? `<span>Com: ${esc(it.fac)}</span>` : ""}</span></div>`).join("");
+    $$("#on-fases button").forEach(b => b.classList.toggle("at", b.dataset.f === fase));
+  };
+  $$("#on-fases button").forEach(b => b.onclick = () => { fase = b.dataset.f; pintaG(); });
+  pintaG();
+  $("#on-ag").innerHTML = pill("Abrir agenda", ON.agenda, "pill");
+  /* Formulários */
+  const fm = (x, num, cls="") => { const u = formU(x.form);
+    return `<a class="fm rv ${cls}" href="${esc(u || "#")}" target="_blank" rel="noopener"><span class="num">${num}</span>
+      <span class="tg">${esc(x.quando)}</span><h3>${esc(x.t)}</h3><p>${esc(x.d)}</p>
+      <span class="ir">Responder formulário<span class="seta">${SETA}</span></span></a>`; };
+  $("#on-fms").innerHTML = (ON.experiencia || []).map(x => fm(x, `${esc(x.n)}<small>dias</small>`)).join("") + (ON.desligamento ? fm(ON.desligamento, "Saída", "dl2") : "");
+  /* Links */
+  $("#on-links").innerHTML = (ON.links || []).map(f => `<a class="fc" href="${esc(sp(f.u))}" ${alvo(sp(f.u))}><span class="ic">${esc(f.sigla)}</span>
+    <span><h4>${esc(f.t)}</h4><p>${esc(f.d)}</p></span><span class="ir">${SETA}</span></a>`).join("");
+  $("#on-aj").innerHTML = pill("Mandar e-mail", ON.contato, "pill pr") + pill("Abrir chamado", P.chamado, "pill cl");
+}
+
+/* =============== AGENDA DE ONBOARDING ===============
+   Grava no Firebase sharepoint-studio (o mesmo do Estúdio), coleção "onboarding".
+   Login: e-mail e senha do Firebase Auth. Papel: editores/{email} = RH (vê tudo);
+   acessosOnboarding/{email} { papel: "RH" | "Lider" }. Líder vê só as agendas com o e-mail dele.
+   ?demo testa sem login, gravando só neste navegador. */
+if ($("#ag-corpo")){
+  const DEMO = qs.has("demo"), FB_V = "10.12.2";
+  const FASES = ON.fases || [], ITENS = FASES.flatMap(f => f.itens);
+  const CHK = '<svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="m5 12 5 5 9-10"/></svg>';
+  const BUSCA = '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>';
+  /* ---- datas (texto AAAA-MM-DD, sem fuso) ---- */
+  const dt = s => { if (!s) return null; const [a,m,d] = s.split("-").map(Number); return new Date(a, m-1, d); };
+  const iso = d => d ? `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}` : "";
+  const mais = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
+  const util = (d, n) => { let x = new Date(d), k = 1; while (x.getDay()===0 || x.getDay()===6) x = mais(x,1);
+    while (k < n){ x = mais(x,1); if (x.getDay()!==0 && x.getDay()!==6) k++; } return x; };
+  const br = s => { const d = typeof s === "string" ? dt(s) : s; return d ? d.toLocaleDateString("pt-BR", {day:"2-digit", month:"2-digit", year:"numeric"}) : "—"; };
+  const hoje = () => { const d = new Date(); return new Date(d.getFullYear(), d.getMonth(), d.getDate()); };
+  const previsto = (it, p) => { const s = ((p.itens || {})[it.id] || {}).data; if (s) return dt(s);
+    const i = dt(p.inicio); if (!i) return null;
+    return it.antes != null ? mais(i, -it.antes) : it.dia ? util(i, it.dia) : it.dias != null ? mais(i, it.dias) : i; };
+  const estado = (it, p) => { if (((p.itens || {})[it.id] || {}).ok) return "ok";
+    const d = previsto(it, p), h = hoje(); if (!d) return ""; if (d < h) return "at"; if (d <= mais(h, 7)) return "lg"; return ""; };
+  const resumo = p => { const ok = ITENS.filter(it => ((p.itens || {})[it.id] || {}).ok).length, at = ITENS.filter(it => estado(it,p) === "at").length;
+    const pend = ITENS.filter(it => !((p.itens || {})[it.id] || {}).ok).map(it => ({it, d: previsto(it,p)})).sort((a,b) => (a.d||0) - (b.d||0));
+    return { ok, at, tot: ITENS.length, pc: Math.round(ok * 100 / (ITENS.length || 1)), prox: pend[0], st: ok === ITENS.length ? "ok" : at ? "at" : "em" }; };
+  const ROT = {ok:"Concluída", at:"Com atraso", em:"Em dia"};
+
+  /* ---- banco ---- */
+  const DB = { user: null, papel: "", lista: [] };
+  const fb = {};
+  const chave = () => ((typeof ESTUDIO !== "undefined" && ESTUDIO.url.match(/key=([^&]+)/)) || [])[1];
+  async function fbCarrega(){
+    if (fb.app) return;
+    const [A, U, S] = await Promise.all(["app","auth","firestore"].map(m => import(`https://www.gstatic.com/firebasejs/${FB_V}/firebase-${m}.js`)));
+    fb.app = A.initializeApp({ apiKey: chave(), authDomain: "sharepoint-studio.firebaseapp.com", projectId: "sharepoint-studio" }, "onboarding");
+    fb.U = U; fb.S = S; fb.auth = U.getAuth(fb.app); fb.db = S.getFirestore(fb.app);
+  }
+  const demoLer = () => { try { return JSON.parse(localStorage.getItem("onboarding:demo") || "null"); } catch(e){ return null; } };
+  const demoGravar = l => { try { localStorage.setItem("onboarding:demo", JSON.stringify(l)); } catch(e){} };
+  function demoInicial(){
+    const h = hoje(), a = iso(mais(h, -20)), b = iso(mais(h, 6));
+    return [
+      { id: "demo1", nome: "Ana Exemplo", cargo: "Analista", setor: "CSUA", lider: "Líder Exemplo", liderEmail: "lider@exemplo.com", aceite: iso(mais(h,-35)), inicio: a,
+        itens: Object.fromEntries(ITENS.slice(0, 18).map(it => [it.id, {ok: true}])) },
+      { id: "demo2", nome: "Bruno Exemplo", cargo: "Engenheiro residente", setor: "ENGO", lider: "Líder Exemplo", liderEmail: "lider@exemplo.com", aceite: iso(mais(h,-10)), inicio: b,
+        itens: { notebook: {ok: true} } }
+    ];
+  }
+  const banco = {
+    async listar(){
+      if (DEMO){ let l = demoLer(); if (!l){ l = demoInicial(); demoGravar(l); } return DB.papel === "RH" ? l : l.filter(x => x.liderEmail === DB.user.email); }
+      const { collection, getDocs, query, where } = fb.S, c = collection(fb.db, "onboarding");
+      const r = await getDocs(DB.papel === "RH" ? c : query(c, where("liderEmail", "==", DB.user.email)));
+      return r.docs.map(d => ({ id: d.id, ...d.data() }));
+    },
+    async criar(p){
+      p = { ...p, itens: {}, criadoPor: DB.user.email, criadoEm: new Date().toISOString(), atualizadoEm: new Date().toISOString() };
+      if (DEMO){ const l = demoLer() || []; p.id = "d" + Date.now(); l.push(p); demoGravar(l); return p; }
+      const r = await fb.S.addDoc(fb.S.collection(fb.db, "onboarding"), p); return { id: r.id, ...p };
+    },
+    async salvar(p, campos){
+      const meta = { atualizadoEm: new Date().toISOString(), atualizadoPor: DB.user.email };
+      if (DEMO){ const l = demoLer() || [], i = l.findIndex(x => x.id === p.id); if (i >= 0){ l[i] = { ...p, ...meta }; demoGravar(l); } return; }
+      await fb.S.updateDoc(fb.S.doc(fb.db, "onboarding", p.id), { ...campos, ...meta });
+    },
+    async excluir(p){
+      if (DEMO){ demoGravar((demoLer() || []).filter(x => x.id !== p.id)); return; }
+      await fb.S.deleteDoc(fb.S.doc(fb.db, "onboarding", p.id));
+    }
+  };
+  const erroTxt = e => /permission|insufficient/i.test(String(e && (e.code || e.message)))
+    ? "Sem permissão no banco. Peça ao administrador para liberar o seu acesso à agenda."
+    : "Não deu para falar com o banco agora. Tente de novo em instantes.";
+
+  /* ---- conta (cabeçalho) ---- */
+  function pintaConta(msg = "", er = false){
+    if (!DB.user){
+      $("#ag-conta").innerHTML = `<form class="ag-login" id="ag-form"><label for="ag-em">Entrar</label>
+        <input id="ag-em" type="email" autocomplete="username" placeholder="E-mail da empresa" required>
+        <input id="ag-pw" type="password" autocomplete="current-password" placeholder="Senha" required>
+        <div class="lin"><button class="pill" type="submit">Entrar ${SETAD}</button></div>
+        <span class="ag-msg ${er ? "er" : ""}" id="ag-msg">${esc(msg || "Mesmo login do Estúdio. Sem acesso? Fale com o RH.")}</span></form>`;
+      $("#ag-form").onsubmit = async e => { e.preventDefault(); $("#ag-msg").className = "ag-msg"; $("#ag-msg").textContent = "Entrando…";
+        try { await fbCarrega(); await fb.U.signInWithEmailAndPassword(fb.auth, $("#ag-em").value.trim(), $("#ag-pw").value); }
+        catch(err){ pintaConta(/invalid|wrong|user-not-found|credential/i.test(String(err.code)) ? "E-mail ou senha incorretos." : "Não deu para entrar agora. Tente de novo.", true); } };
+      return;
+    }
+    $("#ag-conta").innerHTML = `<span class="ag-quem">Conectado como <b>${esc(DB.user.email)}</b><br>${DB.papel === "RH" ? "RH: vê todas as agendas" : "Líder: vê as agendas do seu time"}</span>
+      <div class="dl"><button class="pill" id="ag-nova">Nova agenda +</button>${DEMO ? "" : `<button class="pill ol" id="ag-sair">Sair</button>`}</div>`;
+    $("#ag-nova").onclick = () => telaNova();
+    if ($("#ag-sair")) $("#ag-sair").onclick = () => fb.U.signOut(fb.auth);
+  }
+
+  /* ---- telas ---- */
+  let filtro = "todas", termo = "";
+  function telaFora(){
+    $("#ag-corpo").innerHTML = `<section class="bl"><div class="cab"><div><p class="eyebrow">Em 3 passos</p><h2 class="h2">Como funciona</h2></div></div>
+      <div class="fluxo"><div class="fx"><i>1</i><div><b>Entre</b><span>Use o e-mail e a senha do Estúdio. O acesso é liberado pelo RH.</span></div></div>
+      <div class="fx"><i>2</i><div><b>Crie a agenda</b><span>Nome, líder e data de início. O guia padrão e as datas já vêm prontos.</span></div></div>
+      <div class="fx"><i>3</i><div><b>Acompanhe</b><span>Marque o que foi feito e registre os feedbacks de 30, 60 e 90 dias.</span></div></div></div></section>`;
+  }
+  async function telaLista(){
+    $("#ag-corpo").innerHTML = `<div class="ag-vz" style="margin-top:26px">Carregando agendas…</div>`;
+    try { DB.lista = await banco.listar(); } catch(e){ $("#ag-corpo").innerHTML = `<div class="ag-vz" style="margin-top:26px">${esc(erroTxt(e))}</div>`; return; }
+    pintaLista();
+  }
+  function pintaLista(){
+    const L = DB.lista.map(p => ({ p, r: resumo(p) })).sort((a,b) => (b.p.inicio || "").localeCompare(a.p.inicio || ""));
+    const n = k => k === "todas" ? L.length : L.filter(x => x.r.st === k).length;
+    const ws = norm(termo).split(/\s+/).filter(Boolean);
+    const vis = L.filter(x => (filtro === "todas" || x.r.st === filtro) && ws.every(w => norm([x.p.nome, x.p.cargo, x.p.setor, x.p.lider].join(" ")).includes(w)));
+    $("#ag-corpo").innerHTML = `<div class="ag-top"><div class="chips">${[["todas","Todas"],["em","Em dia"],["at","Com atraso"],["ok","Concluídas"]].map(([k,t]) =>
+        `<button class="chip ${filtro===k ? "at" : ""}" data-f="${k}">${t}<small>${n(k)}</small></button>`).join("")}</div>
+      <div class="ag-busca">${BUSCA}<input id="ag-q" type="search" placeholder="Procurar pessoa, cargo, líder..." value="${esc(termo)}"></div></div>
+      ${vis.length ? `<div class="ag-cards">${vis.map(({p,r}) => `<button class="ac" data-id="${esc(p.id)}">
+        <span class="tp"><h4>${esc(p.nome || "Sem nome")}</h4><span class="st ${r.st === "em" ? "" : r.st}">${ROT[r.st]}</span></span>
+        <span class="mt">${esc([p.cargo, p.setor].filter(Boolean).join(" · ") || "—")}<br>Líder: ${esc(p.lider || "—")} · Início ${br(p.inicio)}</span>
+        <span class="br"><i style="width:${r.pc}%"></i></span>
+        <span class="px"><small>${r.ok} de ${r.tot} feitos${r.at ? ` · ${r.at} atrasado${r.at>1 ? "s" : ""}` : ""}</small>${r.prox ? `Próximo: ${esc(r.prox.it.t)} · ${br(r.prox.d)}` : "Tudo feito"}</span></button>`).join("")}</div>`
+      : `<div class="ag-vz">${L.length ? "Nenhuma agenda com esse filtro." : "Nenhuma agenda ainda. Crie a primeira com o nome da pessoa e a data de início."}<br>${L.length ? "" : `<button class="pill pr" id="ag-nova2">Nova agenda +</button>`}</div>`}`;
+    $$(".ag-top .chip").forEach(c => c.onclick = () => { filtro = c.dataset.f; pintaLista(); });
+    const q = $("#ag-q"); q.oninput = e => { termo = e.target.value; pintaLista(); const nq = $("#ag-q"); nq.focus(); nq.setSelectionRange(termo.length, termo.length); };
+    $$(".ac").forEach(b => b.onclick = () => telaFicha(DB.lista.find(p => p.id === b.dataset.id)));
+    if ($("#ag-nova2")) $("#ag-nova2").onclick = () => telaNova();
+  }
+  const CAMPOS = [["nome","Nome","text"],["cargo","Cargo","text"],["setor","Setor / centro de custo","text"],["lider","Líder direto","text"],["liderEmail","E-mail do líder","email"],["aceite","Data do aceite","date"],["inicio","Data de início","date"]];
+  const campos = (p, travaLider) => CAMPOS.map(([k,t,ty]) => `<label>${t}<input data-k="${k}" type="${ty}" value="${esc(p[k] || "")}" ${k==="liderEmail" && travaLider ? "disabled" : ""}></label>`).join("");
+  function telaNova(){
+    const lider = DB.papel !== "RH", p = lider ? { liderEmail: DB.user.email } : {};
+    $("#ag-corpo").innerHTML = `<div class="ag-novo"><div><p class="eyebrow">Nova agenda</p><h2 class="h2">Quem está chegando?</h2></div>
+      <div class="ag-dados">${campos(p, lider)}</div><span class="ag-msg" id="ag-nm" style="color:var(--cinza)">Nome, e-mail do líder e data de início são obrigatórios.</span>
+      <div class="dl"><button class="pill pr" id="ag-criar">Criar agenda ${SETAD}</button><button class="pill cl" id="ag-volta">Cancelar</button></div></div>`;
+    $("#ag-volta").onclick = telaLista;
+    $("#ag-criar").onclick = async () => {
+      const v = {}; $$(".ag-novo input").forEach(i => v[i.dataset.k] = i.value.trim()); v.liderEmail = (v.liderEmail || "").toLowerCase();
+      if (!v.nome || !v.inicio || !v.liderEmail){ $("#ag-nm").style.color = "#C62828"; return; }
+      $("#ag-criar").classList.add("off");
+      try { const n = await banco.criar(v); DB.lista.push(n); telaFicha(n); }
+      catch(e){ $("#ag-nm").style.color = "#C62828"; $("#ag-nm").textContent = erroTxt(e); $("#ag-criar").classList.remove("off"); }
+    };
+  }
+  function telaFicha(p){
+    if (!p) return telaLista();
+    const lider = DB.papel !== "RH", i0 = dt(p.inicio);
+    const linha = it => { const s = (p.itens || {})[it.id] || {}, e = estado(it, p), d = previsto(it, p);
+      return `<div class="gx ${s.ok ? "ok" : ""}" data-id="${esc(it.id)}"><button class="ck" aria-label="Marcar como feito" aria-pressed="${!!s.ok}">${CHK}</button>
+        <div><div class="tt">${esc(it.t)}</div><div class="mt">${esc(it.q || it.h || "")}${it.resp ? " · " + esc(it.resp) : ""}${it.fac ? " · com " + esc(it.fac) : ""}${e === "at" ? ' · <span class="at">Atrasado</span>' : e === "lg" ? ' · <span class="lg">Esta semana</span>' : ""}</div>
+          ${it.obs ? `<div class="mt">${esc(it.obs)}</div>` : ""}
+          ${it.form && formU(it.form) ? pill("Abrir formulário", formU(it.form), "pill cl") : ""}
+          ${(it.reg || []).length ? `<div class="ag-reg">${it.reg.map(r => `<label>${esc(r)}<textarea data-r="${esc(r)}" rows="1">${esc((s.reg || {})[r] || "")}</textarea></label>`).join("")}</div>` : ""}</div>
+        <label class="dt">Data<input type="date" value="${iso(d)}"></label></div>`; };
+    $("#ag-corpo").innerHTML = `<div class="ag-acoes"><button class="pill cl" id="ag-volta">← Todas as agendas</button><span class="ag-salvo" id="ag-salvo" style="color:var(--cinza)"></span></div>
+      <div class="ag-ficha" style="margin-top:14px"><div class="ag-dados">${campos(p, lider)}</div>
+        <div class="ag-res"><div class="pc" id="ag-pc"></div><div class="br"><i id="ag-br"></i></div>
+          <dl><dt>Início</dt><dd>${br(p.inicio)}</dd><dt>45 dias</dt><dd>${i0 ? br(mais(i0,45)) : "—"}</dd><dt>90 dias</dt><dd>${i0 ? br(mais(i0,90)) : "—"}</dd><dt>Situação</dt><dd id="ag-st"></dd></dl></div></div>
+      <div class="ag-fases">${FASES.map(f => `<div class="af"><div class="af-h"><b>${esc(f.t)}</b><span data-fc="${esc(f.id)}"></span></div>${f.itens.map(linha).join("")}</div>`).join("")}</div>
+      ${lider ? "" : `<div class="ag-acoes"><span></span><button class="pill cl" id="ag-exc">Excluir agenda</button></div>`}`;
+    const atual = () => { const r = resumo(p);
+      $("#ag-pc").innerHTML = `${r.pc}%<small>${r.ok} de ${r.tot} feitos</small>`; $("#ag-br").style.width = r.pc + "%";
+      $("#ag-st").innerHTML = `<span class="st ${r.st === "em" ? "" : r.st}">${ROT[r.st]}</span>`;
+      FASES.forEach(f => { $(`[data-fc="${f.id}"]`).textContent = `${f.itens.filter(it => ((p.itens||{})[it.id]||{}).ok).length} de ${f.itens.length}`; }); };
+    atual();
+    const avisa = (t, cor) => { const s = $("#ag-salvo"); if (s){ s.textContent = t; s.style.color = cor || "var(--cinza)"; } };
+    const grava = async campos => { avisa("Salvando…");
+      try { await banco.salvar(p, campos); avisa("Salvo às " + new Date().toLocaleTimeString("pt-BR", {hour:"2-digit", minute:"2-digit"})); }
+      catch(e){ avisa(erroTxt(e), "#C62828"); } };
+    const timers = {}, depois = (k, f) => { clearTimeout(timers[k]); timers[k] = setTimeout(f, 700); };
+    const item = id => { p.itens = p.itens || {}; return p.itens[id] = p.itens[id] || {}; };
+    const gravaItem = id => grava({ ["itens." + id]: p.itens[id] });
+    $$(".gx").forEach(row => { const id = row.dataset.id;
+      row.querySelector(".ck").onclick = () => { const s = item(id); s.ok = !s.ok; if (s.ok) s.em = iso(hoje());
+        row.classList.toggle("ok", s.ok); row.querySelector(".ck").setAttribute("aria-pressed", s.ok); atual(); gravaItem(id); };
+      row.querySelector(".dt input").onchange = e => { item(id).data = e.target.value; atual(); gravaItem(id); };
+      row.querySelectorAll("textarea").forEach(t => t.oninput = () => { const s = item(id); s.reg = s.reg || {}; s.reg[t.dataset.r] = t.value; depois(id, () => gravaItem(id)); }); });
+    $$(".ag-ficha .ag-dados input").forEach(i => i.oninput = () => { const k = i.dataset.k; p[k] = k === "liderEmail" ? i.value.trim().toLowerCase() : i.value.trim();
+      depois("f-" + k, () => grava({ [k]: p[k] })); });
+    $("#ag-volta").onclick = () => pintaLista();
+    if ($("#ag-exc")) $("#ag-exc").onclick = async e => { const b = e.currentTarget;
+      if (!b.dataset.c){ b.dataset.c = 1; b.textContent = "Confirmar exclusão"; b.className = "pill pr"; return; }
+      try { await banco.excluir(p); DB.lista = DB.lista.filter(x => x !== p); pintaLista(); } catch(err){ avisa(erroTxt(err), "#C62828"); } };
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  /* ---- início ---- */
+  if (DEMO){
+    $("#ag-demo").innerHTML = `<span class="ag-demo">Modo de teste · grava só neste navegador</span>`;
+    DB.user = { email: "demo@dbvo" }; DB.papel = qs.get("demo") === "lider" ? "Lider" : "RH";
+    if (DB.papel === "Lider") DB.user.email = "lider@exemplo.com";
+    pintaConta(); telaLista();
+  } else {
+    pintaConta(); telaFora();
+    fbCarrega().then(() => fb.U.onAuthStateChanged(fb.auth, async u => {
+      DB.user = u ? { email: (u.email || "").toLowerCase() } : null; DB.papel = "";
+      if (!u){ pintaConta(); telaFora(); return; }
+      const { doc, getDoc } = fb.S, tem = async (c, id) => { try { return await getDoc(doc(fb.db, c, id)); } catch(e){ return null; } };
+      const ed = await tem("editores", DB.user.email);
+      if (ed && ed.exists()) DB.papel = "RH";
+      else { const ac = await tem("acessosOnboarding", DB.user.email); if (ac && ac.exists()) DB.papel = (ac.data().papel || "").toUpperCase() === "RH" ? "RH" : "Lider"; }
+      if (!DB.papel){ pintaConta(); $("#ag-conta").querySelector(".dl").innerHTML = `<button class="pill ol" id="ag-sair">Sair</button>`; $("#ag-sair").onclick = () => fb.U.signOut(fb.auth);
+        $("#ag-corpo").innerHTML = `<div class="ag-vz" style="margin-top:26px">Seu login ainda não tem acesso à agenda de onboarding. Peça ao RH para liberar.</div>`; return; }
+      pintaConta(); telaLista();
+    })).catch(() => pintaConta("Não deu para carregar o login agora. Recarregue a página.", true));
+  }
 }
 
 /* ---- animação ao rolar ---- */
