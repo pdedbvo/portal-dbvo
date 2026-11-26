@@ -512,6 +512,7 @@ window.PAGINAS = {
     itens: [
       { area: "CSUA", nome: "PDE", sigla: "PDE", d: "Processo de Desenvolvimento de Empreendimento: cada etapa, do terreno à entrega.", u: "https://pdedbvo.github.io/Processo-De-Desenvolvimento-de-Empreendimento/" },
       { area: "CSUA", nome: "Portal DP", sigla: "DP", d: "Gestão de pessoas e relacionamento: férias, holerite e solicitações ao DP.", u: "https://portal-dp-bravo-881c5.web.app", login: true },
+      { area: "CSUA", nome: "Onboarding", sigla: "ON", d: "Jornada do colaborador: recrutamento, onboarding, período de experiência e desligamento.", u: "https://pdedbvo.github.io/onboarding/", login: true },
       { area: "CSUA", nome: "Central de Serviços", sigla: "CS", d: "Tickets centralizados: abra e acompanhe pedidos para as áreas.", u: "https://pdedbvo.github.io/CentralDeServicos/" },
       { area: "BA",   nome: "OKRs", sigla: "OKR", d: "Gestão de objetivos e resultados: lance o realizado dos seus KRs.", u: "https://okrs---bravo.web.app/", login: true },
       { area: "BA",   nome: "Estúdio", sigla: "EST", d: "Configurações do SharePoint: textos, fotos, avisos, empresas e times das páginas.", u: "https://pdedbvo.github.io/okrs-sharepoint/estudio/", login: true },
