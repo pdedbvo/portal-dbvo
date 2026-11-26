@@ -1,12 +1,13 @@
 /* =====================================================================
    ESTÚDIO — conteúdo editável (Firebase sharepoint-studio, coleção "conteudo").
    Leitura pública pela API REST (sem login). Se falhar, fica o que está no código.
-   Guarda uma cópia no navegador; busca de novo a cada ESTUDIO.minutos.
+   Guarda uma cópia no navegador; se a cópia tem mais de ESTUDIO.minutos, busca de novo
+   antes de desenhar (assim uma alteração salva no Estúdio aparece em até 1 minuto).
    ?estudio=nao no link ignora o Estúdio (para testes).
    ===================================================================== */
 const ESTUDIO = window.ESTUDIO = {
   url: 'https://firestore.googleapis.com/v1/projects/sharepoint-studio/databases/(default)/documents/conteudo?pageSize=50&key=AIzaSyA1w_OOq478oTeTzebdaL29oCnvwFwWW3g',
-  cache: 'estudio:conteudo:v1', minutos: 10, espera: 2500
+  cache: 'estudio:conteudo:v1', minutos: 1, espera: 2500
 };
 function estudioValor(v) {
   if (!v) return null;
@@ -39,13 +40,13 @@ async function estudioBuscar() {
   } catch (e) { return c ? c.d : null; }
 }
 
-/* Começa a página com o conteúdo do Estúdio. Com cópia no navegador desenha na hora
-   (e atualiza a cópia em segundo plano); sem cópia espera a busca (no máximo ESTUDIO.espera). */
+/* Começa a página com o conteúdo do Estúdio. Cópia recente (menos de ESTUDIO.minutos) desenha na hora;
+   senão busca de novo (no máximo ESTUDIO.espera) e, se a busca falhar, usa a cópia guardada. */
 function estudioIniciar(desenhar) {
   let feito = false; const vai = d => { if (feito) return; feito = true; try { desenhar(d); } catch (e) { console.error(e); } };
   const c = estudioCache();
-  if (c) { vai(c.d); if (Date.now() - c.t >= ESTUDIO.minutos * 60000) estudioBuscar(); return; }
-  estudioBuscar().then(vai, () => vai(null));
+  if (c && Date.now() - c.t < ESTUDIO.minutos * 60000) { vai(c.d); return; }
+  estudioBuscar().then(vai, () => vai(c ? c.d : null));
 }
 
 /* Página inicial (dados.js): só troca o que veio preenchido do Estúdio. */
