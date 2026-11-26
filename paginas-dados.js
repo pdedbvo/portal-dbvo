@@ -517,6 +517,7 @@ window.PAGINAS = {
       { area: "BA",   nome: "OKRs", sigla: "OKR", d: "Gestão de objetivos e resultados: lance o realizado dos seus KRs.", u: "https://okrs---bravo.web.app/", login: true },
       { area: "BA",   nome: "Estúdio", sigla: "EST", d: "Configurações do SharePoint: textos, fotos, avisos, empresas e times das páginas.", u: "https://pdedbvo.github.io/okrs-sharepoint/estudio/", login: true },
       { area: "BA",   nome: "Comitê de Incorporação", sigla: "CI", d: "Andamento das obras e fotos do mês de cada empreendimento.", u: "https://comite-de-incorporacao.web.app/", sugestao: true },
+      { area: "BA",   nome: "Lições aprendidas", sigla: "LA", d: "Banco de lições da empresa: o que aconteceu em cada obra, empresa e time, e o que fazer da próxima vez.", u: "https://pdedbvo.github.io/licoes-aprendidas/" },
       { area: "CSUM", nome: "Comitê de Growth", sigla: "CG", d: "Indicadores e decisões do comitê comercial e de marketing.", u: "https://comite-de-growth---comercial.web.app/", login: true },
       { area: "CSUM", nome: "Weekly", sigla: "WK", d: "Gestão de atividades: o que cada um entrega na semana.", u: "https://weekly-social.web.app/", login: true }
     ]
